@@ -1,20 +1,15 @@
 from django.shortcuts import render, redirect
 from django.conf import  settings
-<<<<<<< HEAD
 from realstateapp.models import *
 from django.views.decorators.csrf import csrf_exempt
 from realstateapp.form import *
-
-=======
 from .models import *
 from django.core.mail import EmailMessage
 from django.core.mail import BadHeaderError, send_mail
 from django.contrib import messages
-
 import uuid
 import string
-# Create your views here.
->>>>>>> ecbef54726a0838e586449b83a55d15dbbf1c3aa
+
 def index(request):
 	return render(request, 'index.html',{})
 def properties(request):
@@ -32,7 +27,6 @@ def registration(request):
 	return render(request, 'registration.html', {})
 def login(request):
 	return render(request, 'login.html', {})
-<<<<<<< HEAD
 def adminlogin(request):
 	return render(request, 'adminlogin.html', {})
 @csrf_exempt
@@ -123,11 +117,6 @@ def saveproperty(request):
 		b2='''");</script>'''
 		alert=b1+'Saved'+b2
 		return render(request, 'adminpannel.html', {'alert':alert})
-=======
-
-
-
-
 def agent_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -197,5 +186,3 @@ def agent_signup(request):
 			except Exception:
 				message=' enter valid mail address'
 				return render(request,'registration.html', {'message':message})
-
->>>>>>> ecbef54726a0838e586449b83a55d15dbbf1c3aa
