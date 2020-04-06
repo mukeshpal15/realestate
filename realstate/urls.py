@@ -29,6 +29,12 @@ urlpatterns = [
     path('contact/', contact),
     path('registration/', registration),
     path('login/', login),
+    path('adminlogin/', adminlogin),
+    path('adminlogincheck/', adminlogincheck),
+    path('openaddproperty/', openaddproperty),
+    path('saveproperty/', saveproperty),
+    path('openaddpropertycategory/', openaddpropertycategory),
+    path('savepropertycategory/', savepropertycategory),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
