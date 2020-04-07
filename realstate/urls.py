@@ -36,6 +36,9 @@ urlpatterns = [
     path('openaddpropertycategory/', openaddpropertycategory),
     path('savepropertycategory/', savepropertycategory),
     path('agent_signup/',agent_signup),
+    path('agentdata/', agentdata),
+    path('make_active_agent/',make_active_agent),
+    path('make_deactive_agent/',make_deactive_agent),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
