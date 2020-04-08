@@ -17,6 +17,12 @@ class PropertyData(models.Model):
 	class Meta:
 		db_table="PropertyData"
 
+class PropertyImagesData(models.Model):
+	Property_ID=models.CharField(max_length=100)
+	Property_Image=models.ImageField(upload_to="propertyimages/")
+	class Meta:
+		db_table="PropertyImagesData"
+
 class agent_account(models.Model):
 	agent_id=models.CharField(max_length=20)
 	name=models.CharField(max_length=40)

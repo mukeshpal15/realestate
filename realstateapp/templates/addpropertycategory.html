@@ -5,6 +5,7 @@
     <title>HomeSpace &mdash; Add Property Category</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'w3.css' %}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
@@ -152,7 +153,21 @@
 
             </form>
 
+
+
       </div>
+      <table class="w3-table-all w3-hoverable" style="margin-top:20px;">
+        <tr class="w3-blue">
+          <th>Category ID</th>
+          <th>Category Name</th>
+        </tr>
+        {% for x in cdata %}
+        <tr>
+          <td>{{ x.cid|safe }}</td>
+          <td>{{ x.cname|safe }}</td>
+        </tr>
+        {% endfor %}
+      </table>
     </div>
   </div>
 

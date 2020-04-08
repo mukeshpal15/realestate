@@ -1,0 +1,20 @@
+To Upload Code First Time:
+1. git init
+2. git status
+3. git add .
+4. git commit -m "commit name"
+5. git remote add origin <REPO LINK>
+6. git push -u origin master
+
+To Update Code on Git
+1. git status
+2. git pull origin master
+3. Then check the modified files mention on CMD and git lines.
+4. git status
+5. git add .
+6. git commit -m "commit name"
+7. git push -u origin master
+
+To get updated Code from Git
+1. git pull origin master
+2. Then check the modified files mention on CMD and git lines.

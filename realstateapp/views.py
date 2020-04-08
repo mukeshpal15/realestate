@@ -9,7 +9,10 @@ from django.core.mail import BadHeaderError, send_mail
 from django.contrib import messages
 import uuid
 import string
+from realstateapp.realutil import *
 
+def error(request):
+	return render(request,'Error.html',{})
 def index(request):
 	return render(request, 'index.html',{})
 def properties(request):
@@ -49,8 +52,11 @@ def openaddproperty(request):
 		lt=[]
 		for x in obj:
 			lt.append(x.Category_Name)
-		dic={'category':lt}
+		dic={'category':lt,
+			'pdata':GetAllPropertyData()}
 		return render(request, "addproperty.html",dic)
+	else:
+		return redirect('/error/')
 @csrf_exempt
 def openaddpropertycategory(request):
 	if request.method=="POST":
@@ -82,11 +88,8 @@ def savepropertycategory(request):
 				alert=b1+'Saved'+b2
 				return render(request, "addpropertycategory.html",{'alert':alert})
 
-	b1='''<script type="text/javascript">
-	alert("'''
-	b2='''");</script>'''
-	alert=b1+'Error'+b2
-	return render(request, "addpropertycategory.html",{'alert':alert})
+	else:
+		return redirect('/error/')
 
 @csrf_exempt
 def saveproperty(request):
@@ -99,7 +102,7 @@ def saveproperty(request):
 		p="P00"
 		x=1
 		pid=p+str(x)
-		while PropertyCategoryData.objects.filter(Category_ID=pid).exists():
+		while PropertyData.objects.filter(Property_ID=pid).exists():
 			x=x+1
 			pid=p+str(x)
 		x=int(x)
@@ -116,7 +119,10 @@ def saveproperty(request):
 		alert("'''
 		b2='''");</script>'''
 		alert=b1+'Saved'+b2
-		return render(request, 'adminpannel.html', {'alert':alert})
+		return render(request, 'adminpannel.html', {'alert':alert,'pdata':GetAllPropertyData()})
+	else:
+		return redirect('/error/')
+
 def agent_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -161,7 +167,6 @@ def agent_signup(request):
 				email.send()
 
 				try:
-					print('esle')
 					sus='New Agent Register'
 					mess= ''' Hello sir,
 		This Person want to make your agent
@@ -186,3 +191,37 @@ def agent_signup(request):
 			except Exception:
 				message=' enter valid mail address'
 				return render(request,'registration.html', {'message':message})
+
+@csrf_exempt
+def openaddpropertycategory(request):
+	if request.method=="POST":
+		return render(request, "addpropertycategory.html",{'cdata':GetPropertyCategoryData()})
+	else:
+		return redirect('/error/')
+
+@csrf_exempt
+def openaddpropertyimages(request):
+	if request.method=="POST":
+		dic={'propertyid':GetPropertyID(),
+			'propertyimagedata':GetPropertyImageData()}
+		return render(request, "addpropertyimages.html",dic)
+	else:
+		return redirect('/error/')
+
+@csrf_exempt
+def savepropertyimages(request):
+	if request.method=="POST":
+		n=request.POST.get('propertyid')
+		form=ImageUploadForm(request.POST, request.FILES)
+		if form.is_valid():
+			m=form.cleaned_data['image']
+			obj=PropertyImagesData(
+				Property_ID=n,
+				Property_Image=m
+				)
+			obj.save()
+			dic={'propertyid':GetPropertyID(),
+				'propertyimagedata':GetPropertyImageData()}
+			return render(request, "addpropertyimages.html",dic)
+	else:
+		return redirect('/error/')
