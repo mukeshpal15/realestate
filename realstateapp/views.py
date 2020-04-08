@@ -46,6 +46,41 @@ def adminlogincheck(request):
 			alert=b1+'Login Failed'
 			return render(request, 'adminlogin.html', {'alert':alert})
 @csrf_exempt
+def agentdata(request):
+	s='active'
+	u= 'not active'
+	agent=agent_account.objects.filter(status=s)
+	notagent=agent_account.objects.filter(status=u)
+	return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+@csrf_exempt
+def make_active_agent(request):
+	if request.method=="POST":
+		s='active'
+		u= 'not active'
+		m= request.POST.get('set')
+		if agent_account.objects.filter(agent_id=m):
+			t=agent_account.objects.filter(agent_id=m)
+			for i in t:
+				i.status=s
+				i.save()
+		agent=agent_account.objects.filter(status=s)
+		notagent=agent_account.objects.filter(status=u)
+		return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+@csrf_exempt
+def make_deactive_agent(request):
+	if request.method=="POST":
+		s='active'
+		u= 'not active'
+		m= request.POST.get('set')
+		if agent_account.objects.filter(agent_id=m):
+			t=agent_account.objects.filter(agent_id=m)
+			for i in t:
+				i.status=u
+				i.save()
+		agent=agent_account.objects.filter(status=s)
+		notagent=agent_account.objects.filter(status=u)
+		return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+@csrf_exempt
 def openaddproperty(request):
 	if request.method=="POST":
 		obj=PropertyCategoryData.objects.all()
@@ -132,7 +167,8 @@ def agent_signup(request):
 		c = request.POST.get('city')
 		ph= request.POST.get('phone')
 		aa=request.POST.get('aadhar')
-		status=0
+		u= 'not active'
+		status=u
 		randomString = uuid.uuid4().hex
 		p= randomString.lower()[0:8]
 
