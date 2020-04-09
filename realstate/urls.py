@@ -21,12 +21,21 @@ urlpatterns = [
     path('openaddpropertycategory/', openaddpropertycategory),
     path('savepropertycategory/', savepropertycategory),
     path('agent_signup/',agent_signup),
+    path('agent_forgot_pass/', agent_forgot_pass),
+    path('password_send_to_agent/',password_send_to_agent),
     path('openaddpropertyimages/', openaddpropertyimages),
     path('savepropertyimages/', savepropertyimages),
     path('error/', error),
     path('agentdata/', agentdata),
     path('make_active_agent/',make_active_agent),
     path('make_deactive_agent/',make_deactive_agent),
+    path('user_signup/',user_signup),
+    path('userregistation/', userregistation),
+    path('loginformuser/', loginformuser),
+    path('user_login/',user_login),
+    path('user_forgot_pass/', user_forgot_pass),
+    path('password_send_to_user/', password_send_to_user),
+    path('send_mail_by_contact/', send_mail_by_contact),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

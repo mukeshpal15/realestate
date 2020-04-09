@@ -24,7 +24,15 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+    <link href="{% static 'css/mainreg.css' %}" rel="stylesheet" media="all">
+      <link href="{% static 'vendor/selectreg/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+      <!-- Icons font CSS-->
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   </head>
   <body>
   
@@ -103,7 +111,6 @@
                   <li class="has-children">
                     <a href="#">Users</a>
                     <ul class="dropdown">
-                      <li><a href="\userregistation\">Sign Up</a></li>
                       <li><a href="\loginformuser\">Login</a></li>
                     </ul>
                   </li>
@@ -121,8 +128,8 @@
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
           <div class="col-md-10">
-            <h1 class="mb-2">Contact Us</h1>
-            <div><a href="\index\">Home</a> <span class="mx-2 text-white">&bullet;</span> <strong class="text-white">Contact</strong></div>
+            <h1 class="mb-2">User Registration</h1>
+            <div><a href="\index\">Home</a> <span class="mx-2 text-white">&bullet;</span> <strong class="text-white">User Registration</strong></div>
           </div>
         </div>
       </div>
@@ -133,46 +140,61 @@
         <div class="row">
        
           <div class="col-md-12 col-lg-8 mb-5">
+<!--========================================================================================== -->         
+            <div class="wrapper wrapper--w780" style=" margin-top:50px; margin-bottom: 50px;  ">
+            <div class="card card-3">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Registration Info</h2>
+                    <form method="POST" action="\user_signup\" >
+                    {% csrf_token %}
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Full Name" name="name" required="">
+                        </div>
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="gender" required="">
+                                    <option disabled="disabled" selected="selected" >Gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="email" placeholder="Email" name="email" required="" >
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="text"  placeholder="Address" name="address" required="" >
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="city, state" name="city" required="" >
+                        </div>
+                        
+                        <div class="input-group">
+                            <input class="input--style-3" type="number" placeholder="Phone" name="phone" required="" >
+                        </div>
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                        </div>
+                        <br>
+                        <div>
+                       
+                          <h5 style=" color: red; "> {{message}}</h5>
+                        
+                      
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
           
-            
-          
-            <form action="\send_mail_by_contact\" class="p-5 bg-white border" method="POST">{% csrf_token %}
-
-              <div class="row form-group">
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="font-weight-bold" for="fullname">Full Name</label>
-                  <input type="text" id="fullname" name="name" class="form-control" placeholder="Full Name">
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="email">Email</label>
-                  <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="email">Subject</label>
-                  <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter Subject">
-                </div>
-              </div>
-              
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us"></textarea>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary  py-2 px-4 rounded-0">
-                </div>
-              </div>
-
-  
-            </form>
+<!--============================================================================================= -->            
           </div>
 
           <div class="col-lg-4">
@@ -423,6 +445,7 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/globalreg.js' %}"></script>
     
   </body>
 </html>
