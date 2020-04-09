@@ -27,6 +27,9 @@ urlpatterns = [
     path('agentdata/', agentdata),
     path('make_active_agent/',make_active_agent),
     path('make_deactive_agent/',make_deactive_agent),
+    path('openpropertycategory/',openpropertycategory),
+    path('openmyaccount/',openmyaccount),
+    path('propertypaginator/',propertypaginator)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

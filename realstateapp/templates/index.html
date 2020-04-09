@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HomeSpace &mdash; Colorlib Website Template</title>
+    <title>HomeSpace</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="{% static 'w3.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
@@ -259,6 +259,42 @@
         </div>
       </div>
     </div>
+    <div class="site-section site-section-sm bg-light">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <div class="site-section-title">
+              <h2>Wide Range of Property Categories</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5">
+        {% for x in cdata %}          
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="prop-entry d-block">
+              <figure>
+                <img src="{{ x.cimage|safe }}" alt="Image" class="img-fluid" style="height:250px;width:100%;">
+              </figure>
+              <div class="prop-text">
+                <div class="inner">
+                  <h3 class="title" style="margin-bottom:20px;font-size:35px;">{{ x.cname|safe }}</h3>
+                  <a class="price rounded" href="/openpropertycategory/?cname={{ x.cname|safe }}">Browse Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+              <button href="#" class="w3-button w3-hover-red w3-border w3-border-red w3-round-large">View All Categories</button>
+          </div>  
+        </div>
+        
+      </div>
+    </div>
+
     <div class="site-section site-section-sm bg-light">
       <div class="container">
         <div class="row mb-5">
