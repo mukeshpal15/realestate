@@ -2,9 +2,10 @@ from django.core.paginator import *
 from django.shortcuts import render, redirect
 from django.conf import  settings
 from realstateapp.models import *
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from realstateapp.form import *
-from .models import *
+from .models import * 
 from django.core.mail import EmailMessage
 from django.core.mail import BadHeaderError, send_mail
 from django.contrib import messages
@@ -38,6 +39,14 @@ def login(request):
 	return render(request, 'login.html', {})
 def adminlogin(request):
 	return render(request, 'adminlogin.html', {})
+def agent_forgot_pass(request):
+	return render(request, 'agentforget.html', {})
+def userregistation(request):
+	return render(request, 'userregistation.html',{})
+def loginformuser(request):
+	return render(request, 'userlogin.html',{})
+def user_forgot_pass(request):
+	return render(request, 'userforgot.html', {})
 @csrf_exempt
 def adminlogincheck(request):
 	if request.method=="POST":
@@ -278,6 +287,7 @@ def savepropertyimages(request):
 	else:
 		return redirect('/error/')
 
+<<<<<<< HEAD
 @csrf_exempt
 def openpropertycategory(request):
 		category=request.GET.get('cname')
@@ -309,3 +319,148 @@ def propertypaginator(request):
 	return render(request,"propertycategories.html",dic)
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
+=======
+def user_signup(request):
+	if request.method=="POST":
+		n= request.POST.get('name')
+		g= request.POST.get('gender')
+		e= request.POST.get('email')
+		ad= request.POST.get('address')
+		c = request.POST.get('city')
+		ph= request.POST.get('phone')
+		randomString = uuid.uuid4().hex
+		p= randomString.lower()[0:8]
+
+		if user_account.objects.filter(email=e).exists():
+			message= 'User Already Exist'
+			return render(request,'userregistation.html',{'message':message})
+
+		elif user_account.objects.filter(phone=ph).exists():
+			message= 'User Already Exist'
+			return render(request,'userregistation.html', {'message':message})
+
+		else:
+			u='U00'
+			x=1
+			uid=u+str(x)
+			while user_account.objects.filter(user_id=uid):
+				x=x+1
+				uid=u+str(x)
+			x=int(x)
+			try:
+				subject='mail from RealEstate'
+				msg= ''' Hello sir,
+
+		You are successfully registered, 
+		your password is :'''+p+''' 
+
+		Thanks & Regards
+		Real Estate''' 
+				
+
+				email = EmailMessage(subject, msg, to=[e])
+				email.send()
+				sv=user_account(user_id=uid, name=n, gender=g, email=e, address=ad, city=c, phone=ph,password=p)
+				sv.save()
+				message='You are successfully registered. password is send to your given mail account'	
+				return render(request,'userregistation.html', {'message':message})
+			except Exception:
+				message=' enter valid mail address'
+				return render(request,'userregistation.html', {'message':message})
+@csrf_exempt
+def user_login(request):
+	if request.method=="POST":
+		e=request.POST.get('email')
+		p=request.POST.get('password')
+		if user_account.objects.filter(email=e).exists():
+			uc=user_account.objects.filter(email=e, password=p)
+			for i in uc:
+				userid=i.user_id
+				request.session['user_id'] = userid
+				break
+			return render(request, 'index.html', {})
+		else:
+			message='Please Enter valid details'
+			return render(request,'userlogin.html',{'message': message})
+
+@csrf_exempt
+def password_send_to_user(request):
+	if request.method=="POST":
+		e=request.POST.get('email')
+		randomString = uuid.uuid4().hex
+		p= randomString.lower()[0:8]
+		if user_account.objects.filter(email=e).exists():
+			u=user_account.objects.filter(email=e)
+			for i in u:
+				i.password=p
+				break
+			subject='mail from RealEstate'
+			msg= ''' Hello sir,
+
+			Your passwaord has been changed, 
+			your password is :'''+p+''' 
+
+			Thanks & Regards
+			Real Estate''' 
+					
+			try:
+				email = EmailMessage(subject, msg, to=[e])
+				email.send()
+				i.save()
+				return HttpResponse("<script> alert('Hello User, Your password has been sent to your registered Email. If you have not received the password, go to the contact page and send an email. Will be processed within 24 hours !!'); window.location.replace('/loginformuser/') </script>")
+			except Exception:
+				return HttpResponse("<script> alert('Please Enter The Registered Email Address .!!'); window.location.replace('/user_forgot_pass/') </script>")
+		else:
+			return HttpResponse("<script> alert('Please Enter The Registered Email Address .!!'); window.location.replace('/user_forgot_pass/') </script>")
+
+@csrf_exempt
+def password_send_to_agent(request):
+	if request.method=="POST":
+		e=request.POST.get('email')
+		randomString = uuid.uuid4().hex
+		p= randomString.lower()[0:8]
+		if agent_account.objects.filter(email=e).exists():
+			u=agent_account.objects.filter(email=e)
+			for i in u:
+				i.password=p
+				break
+			subject='mail from RealEstate'
+			msg= ''' Hello sir,
+
+			Your passwaord has been changed, 
+			your password is :'''+p+''' 
+
+			Thanks & Regards
+			Real Estate''' 
+					
+			try:
+				email = EmailMessage(subject, msg, to=[e])
+				email.send()
+				i.save()
+				return HttpResponse("<script> alert('Hello Agent, Your password has been sent to your registered Email. If you have not received the password, go to the contact page and send an email. Will be processed within 24 hours !!'); window.location.replace('/login/') </script>")
+			except Exception:
+				return HttpResponse("<script> alert('Please Enter The Registered Email Address .!!'); window.location.replace('/agent_forgot_pass/') </script>")
+		else:
+			return HttpResponse("<script> alert('Please Enter The Registered Email Address .!!'); window.location.replace('/agent_forgot_pass/') </script>")
+
+def send_mail_by_contact(request):
+	if request.method=="POST":
+		n= request.POST.get('name')
+		e= request.POST.get('email')
+		s= request.POST.get('subject')
+		m= request.POST.get('message')
+		subject='mail from RealEstate'
+		msg= ''' Hello sir,
+
+	Someone contact you, 
+	details are given below 
+'''+"Name :" +n+('\n')+"Mail ID :"+e+('\n')+"Subject :"+s+('\n')+"Message :"+m+'''
+
+	Thanks & Regards
+	Real Estate''' 
+
+		email = EmailMessage(subject, msg, to=['testm1214@gmail.com'])
+		email.send()
+		print('heloo')
+		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
+>>>>>>> b8b165508040b34db5dd91cb1ee7e2ede941495f
