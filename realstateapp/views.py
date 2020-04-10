@@ -110,7 +110,7 @@ def openaddproperty(request):
 @csrf_exempt
 def openaddpropertycategory(request):
 	if request.method=="POST":
-		return render(request, "addpropertycategory.html",{})
+		return render(request, "addpropertycategory.html",{'cdata':GetPropertyCategoryData()})
 
 @csrf_exempt
 def savepropertycategory(request):
@@ -136,7 +136,7 @@ def savepropertycategory(request):
 				alert("'''
 				b2='''");</script>'''
 				alert=b1+'Saved'+b2
-				return render(request, "addpropertycategory.html",{'alert':alert})
+				return render(request, "addpropertycategory.html",{'alert':alert,'cdata':GetPropertyCategoryData()})
 
 	else:
 		return redirect('/error/')
@@ -287,7 +287,6 @@ def savepropertyimages(request):
 	else:
 		return redirect('/error/')
 
-<<<<<<< HEAD
 @csrf_exempt
 def openpropertycategory(request):
 		category=request.GET.get('cname')
@@ -319,7 +318,6 @@ def propertypaginator(request):
 	return render(request,"propertycategories.html",dic)
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
-=======
 def user_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -463,4 +461,3 @@ def send_mail_by_contact(request):
 		email.send()
 		print('heloo')
 		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
->>>>>>> b8b165508040b34db5dd91cb1ee7e2ede941495f

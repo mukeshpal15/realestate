@@ -31,7 +31,7 @@ urlpatterns = [
     path('make_deactive_agent/',make_deactive_agent),
     path('openpropertycategory/',openpropertycategory),
     path('openmyaccount/',openmyaccount),
-    path('propertypaginator/',propertypaginator)
+    path('propertypaginator/',propertypaginator),
     path('user_signup/',user_signup),
     path('userregistation/', userregistation),
     path('loginformuser/', loginformuser),

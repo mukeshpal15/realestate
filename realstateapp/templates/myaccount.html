@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'w3.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
@@ -26,6 +26,39 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
   </head>
+  <style type="text/css">
+  /* The grid: Three equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 50px;
+      text-align: center;
+      font-size: 25px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .containerTab {
+      padding: 20px;
+      color: white;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Closable button inside the image */
+    .closebtn {
+      float: right;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+  </style>
+
   <body style="height:100%;background-size:100% 100%;background-image:url({% static 'images\myaccountbackground.jpg' %});">
   
   <div class="site-loader"></div>
@@ -90,11 +123,9 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a href="\blog\">Blog</a></li>
-                  <li><a href="\about\">About</a></li>
-                  <li><a href="\contact\">Contact</a></li>
-                  <li><a href="\registration\">Sign Up</a></li>
-                  <li><a href="\login\">Login</a></li>
+                  <li><a href="\blog\">My Blogs</a></li>
+                  <li><a href="\registration\">My Orders</a></li>
+                  <li><a class="w3-bar-item w3-button" style="background-color:orange;color:white;padding-right:10px;font-weight:bold;" href="\login\">Logout</a></li>
                 </ul>
               </nav>
             </div>
@@ -133,23 +164,21 @@
             <h2>My Profile</h2>
           </div>
         </CENTER>
-       <DIV style="background-image:url({% static 'images/card.jpg' %});background-size:100% 100%;width:auto;padding-right:20px;" class="row w3-panel w3-card-4 w3-round-large">
+       <DIV style="background-image:url({% static 'images/card.jpg' %});background-size:100% 100%;width:80%;padding-right:20px;margin:0 auto;" class="row w3-panel w3-card-4 w3-round-large">
         <DIV class="columm"> 
           <img style=" margin-left:20px;margin-bottom:20px;height:225px;width:190px;align:left;padding-left:0px;padding-top:20px;" class="w3-card-4" src="{% static 'images\profile.jpg' %}" alt="Person">
           <button style=" width:190px;margin-left:20px;margin-bottom:20px;bacground-color:orange;" class="w3-button w3-block w3-ripple w3-red">Change Settings</button>
         </DIV>
         <DIV class="columm">
-          <P style="margin-bottom:0px;margin-top:20px;color:white;font-size:25px;padding-left:45px;"><strong>Email </strong></P>
-          <div style="font-size:20px;padding-left:10px;background-color:white;margin-left:45px;margin-right:45px;width:500px;margin-right:20px;height:35px;" class="w3-round-large">
-          <p>User Email</p>
-          </div>
-          <P style="margin-bottom:0px;margin-top:20px;color:white;font-size:25px;padding-left:45px;"><strong>Email </strong></P>
-          <div style="font-size:20px;padding-left:10px;background-color:white;margin-left:45px;width:500px;margin-right:20px;height:35px;" class="w3-round-large">
-          <p>User Email</p>
-          </div>
-          <P style="margin-bottom:0px;margin-top:20px;color:white;font-size:25px;padding-left:45px;"><strong>Email </strong></P>
-          <div style="font-size:20px;padding-left:10px;background-color:white;margin-left:45px;width:500px;margin-right:20px;height:35px;" class="w3-round-large">
-          <p>User Email</p>
+          
+          <P style="margin-bottom:0px;margin-top:20px;font-size:22px;padding-left:45px;"><i class="fa fa-user"></i> : User Name Here</P>
+
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-envelope"></i> : email@example.com</P>
+
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-map-marker"></i> : Address Here</P>
+
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-phone"></i> : Contact Here</P>
+
           </div>
         </DIV>
 
@@ -159,8 +188,88 @@
         </div>
         
         
+        <CENTER>
+          <div class="site-section-title">
+            <h2>My Blogs</h2>
+          </div>
+        </CENTER>
+        <!-- The grid: three columns -->
+  <div style="margin:0 auto;width:80%">
+    <div class="row">
+      <div class="column w3-panel w3-leftbar w3-border-blue w3-pale-blue" onclick="openTab('b1');" style="padding-top:5px;width:31%;height:100px;margin-bottom:20px;margin-right:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog1</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P>
+      </div>
+      <div class="column w3-panel w3-leftbar w3-border-blue w3-pale-blue" onclick="openTab('b2');" style="padding-top:0px;width:31%;height:100px;margin-bottom:20px;margin-right:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog2</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P>
+      </div>
+      
+      <div class="column w3-panel w3-leftbar w3-border-blue w3-pale-blue" onclick="openTab('b3');" style="padding-top:0px;width:31%;height:100px;margin-bottom:20px;margin-right:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog3</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P></div>
+      <div class="column w3-panel w3-leftbar w3-border-blue w3-pale-blue" onclick="openTab('b4');" style="padding-top:0px;width:31%;height:100px;margin-bottom:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog4</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P></div>
+    </div>
 
+    <div id="b1" class="containerTab" style="display:none;background-color:#d5ffcc;padding:0px 0px 0px 0px;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:black;margin-right:20px;">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;">Your Blog 1</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
 
+    <div id="b2" class="containerTab" style="display:none;background-color:#d5ffcc;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;">Your Blog 2</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="b3" class="containerTab" style="display:none;background-color:#d5ffcc;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;">Your Blog 3</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+    <div id="b4" class="containerTab" style="display:none;background-color:#d5ffcc;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;">Your Blog 4</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        
           
     
 
@@ -177,6 +286,7 @@
         </div>
       </div>
     </div>
+
     
 
     <footer class="site-footer">
@@ -261,6 +371,16 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
-    
+ <script type="text/javascript">
+  // Hide all elements with class="containerTab", except for the one that matches the clickable grid column
+  function openTab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  }
+  </script>   
   </body>
 </html>

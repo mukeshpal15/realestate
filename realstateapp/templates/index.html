@@ -281,29 +281,23 @@
           </div>
         </div>
         <div class="row mb-5">
-        {% for x in cdata %}          
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="prop-entry d-block">
-              <figure>
-                <img src="{{ x.cimage|safe }}" alt="Image" class="img-fluid" style="height:250px;width:100%;">
-              </figure>
-              <div class="prop-text">
-                <div class="inner">
-                  <h3 class="title" style="margin-bottom:20px;font-size:35px;">{{ x.cname|safe }}</h3>
-                  <a class="price rounded" href="/openpropertycategory/?cname={{ x.cname|safe }}">Browse Now</a>
+        {% for x in cdata %}
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="prop-entry d-block">
+                <figure>
+                  <img src="{{ x.cimage|safe }}" alt="Image" class="img-fluid" style="height:250px;width:100%;">
+                </figure>
+                <div class="prop-text">
+                  <div class="inner">
+                    <h3 class="title" style="margin-bottom:20px;font-size:35px;">{{ x.cname|safe }}</h3>
+                    <a class="price rounded" href="/openpropertycategory/?cname={{ x.cname|safe }}">Browse Now</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         {% endfor %}
 
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-              <button href="#" class="w3-button w3-hover-red w3-border w3-border-red w3-round-large">View All Categories</button>
-          </div>  
-        </div>
-        
       </div>
     </div>
 
