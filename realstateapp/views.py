@@ -6,9 +6,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from realstateapp.form import *
 from .models import * 
+from django.contrib.auth import logout
 from django.core.mail import EmailMessage
 from django.core.mail import BadHeaderError, send_mail
 from django.contrib import messages
+
 import uuid
 import string
 from realstateapp.realutil import *
@@ -28,7 +30,14 @@ def properties(request):
 def blog(request):
 	return render(request, 'blog.html', {})
 def about(request):
-	return render(request, 'about.html', {})
+	b=0
+	t=0
+	if request.session.has_key('user_id'):
+		b=1
+		t=1
+		return render(request, 'about.html', {'b':b, 't':t})
+	else:
+		return render(request, 'login.html', {})
 def property_detail(request):
 	return render(request, 'property-details.html', {})
 def contact(request):
@@ -368,18 +377,27 @@ def user_signup(request):
 @csrf_exempt
 def user_login(request):
 	if request.method=="POST":
+		b=0
+		h=0
 		e=request.POST.get('email')
 		p=request.POST.get('password')
-		if user_account.objects.filter(email=e).exists():
-			uc=user_account.objects.filter(email=e, password=p)
-			for i in uc:
-				userid=i.user_id
-				request.session['user_id'] = userid
-				break
-			return render(request, 'index.html', {})
+		ua = user_account.objects.all()
+		for elt in ua:
+			if elt.email==e and elt.password==p:
+				for i in ua:
+					b=1
+					userid=i.user_id
+					request.session['user_id'] = userid
+					break
+				print('go')
+		if request.session.has_key('user_id') and b==1: 
+			h=1
+			return render(request, 'index.html', {'b':b, 'h': h})
 		else:
+			print('helo')
 			message='Please Enter valid details'
 			return render(request,'userlogin.html',{'message': message})
+
 
 @csrf_exempt
 def password_send_to_user(request):
@@ -461,3 +479,15 @@ def send_mail_by_contact(request):
 		email.send()
 		print('heloo')
 		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
+@csrf_exempt
+def Log(request):
+
+	try:
+	    if request.session.has_key('user_id'):
+	     	request.session.flush()
+	     	del request.session['user_id']
+	     	logout(request)
+	     	
+	     	return HttpResponse("<script> window.location.replace('/login/'); </script>")
+	except:
+ 		return HttpResponse("<script> window.location.replace('/login/'); </script>")

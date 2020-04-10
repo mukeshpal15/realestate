@@ -39,6 +39,7 @@ urlpatterns = [
     path('user_forgot_pass/', user_forgot_pass),
     path('password_send_to_user/', password_send_to_user),
     path('send_mail_by_contact/', send_mail_by_contact),
+    path('Log/', Log),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
