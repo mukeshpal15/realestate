@@ -112,14 +112,14 @@
                     <ul class="dropdown">
                       <li><a href="\registration\">Sign Up</a></li>
                     </ul>
-                  </li>
+                  </li> {% if t == e %}
                   <li class="has-children">
                     <a href="#">Users</a>
-                    <ul class="dropdown">
+                    <ul class="dropdown">{%else%}
                       <li><a href="\userregistation\">Sign Up</a></li>
                       <li><a href="\loginformuser\">Login</a></li>
                     </ul>
-                  </li>
+                  </li>{% endif %}
                 </ul>
               </nav>
             </div>

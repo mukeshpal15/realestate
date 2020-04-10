@@ -65,3 +65,13 @@ def GetAllPropertyData():
 			'pyear':x.Property_BuiltYear}
 		lt.append(dic)
 	return lt
+
+def getuserinfo(user_id):
+	dic={}
+	obj=user_account.objects.filter(user_id=user_id)
+	for i in obj:
+		dic={
+			'name': i.name
+		}
+		break
+	return dic

@@ -94,12 +94,15 @@
                   <li><a href="\about\">About</a></li>
                   <li><a href="\contact\">Contact</a></li>
                   <li class="has-children">
+                  
+                  {% if t == b %}
                     <a href="#">Agents</a>
+                    {% else %}
                     <ul class="dropdown">
                       <li><a href="\registration\">Sign Up</a></li>
                       <li><a href="\login\">Login</a></li>
                     </ul>
-                  </li>
+                  </li>{% endif %}
                   <li class="has-children">
                     <a href="#">Users</a>
                     <ul class="dropdown">
