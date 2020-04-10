@@ -1,3 +1,4 @@
+from django.core.paginator import *
 from django.shortcuts import render, redirect
 from django.conf import  settings
 from realstateapp.models import *
@@ -15,9 +16,14 @@ import string
 from realstateapp.realutil import *
 
 def error(request):
+	#obj=PropertyData.objects.all().delete()
+	#obj=PropertyImagesData.objects.all().delete()
 	return render(request,'Error.html',{})
+
 def index(request):
-	return render(request, 'index.html',{})
+	dic={'cdata':GetPropertyCategoryData()}
+	return render(request, 'index.html',dic)
+
 def properties(request):
 	return render(request, 'properties.html', {})
 
@@ -149,9 +155,14 @@ def saveproperty(request):
 	if request.method=="POST":
 		n=request.POST.get('name')
 		a=request.POST.get('about')
-		p=request.POST.get('price')
+		property_price=request.POST.get('price')
 		c=request.POST.get('category')
 		y=request.POST.get('builtyear')
+		ad=request.POST.get('address')
+		ar=request.POST.get('area')
+		bd=request.POST.get('beds')
+		bt=request.POST.get('baths')
+		gr=request.POST.get('garages')
 		p="P00"
 		x=1
 		pid=p+str(x)
@@ -163,7 +174,12 @@ def saveproperty(request):
 			Property_ID=pid,
 			Property_Name=n,
 			Property_About=a,
-			Property_Price=p,
+			Property_Address=ad,
+			Property_Area=ar,
+			Property_Beds=bd,
+			Property_Baths=bt,
+			Property_Garages=gr,
+			Property_Price=property_price,
 			Property_Category=c,
 			Property_BuiltYear=y
 			)
@@ -280,6 +296,39 @@ def savepropertyimages(request):
 	else:
 		return redirect('/error/')
 
+<<<<<<< HEAD
+@csrf_exempt
+def openpropertycategory(request):
+		category=request.GET.get('cname')
+		request.session['cname'] = category
+		page = request.GET.get('page')
+		cdata=[]
+		paginator = Paginator(GetPropertyThumbData(category), 15)
+		try:
+			cdata = paginator.page(page)
+		except PageNotAnInteger:
+			cdata = paginator.page(1)
+		except EmptyPage:
+			cdata = paginator.page(paginator.num_pages)
+		dic={'cdata':cdata,
+			'category':category}
+		return render(request,"propertycategories.html",dic)
+def propertypaginator(request):
+	page = request.GET.get('page')
+	cdata=[]
+	paginator = Paginator(GetPropertyThumbData(request.session['cname']), 15)
+	try:
+		cdata = paginator.page(page)
+	except PageNotAnInteger:
+		cdata = paginator.page(1)
+	except EmptyPage:
+		cdata = paginator.page(paginator.num_pages)
+	dic={'cdata':cdata,
+		'category':request.session['cname']}
+	return render(request,"propertycategories.html",dic)
+def openmyaccount(request):
+	return render(request,"myaccount.html",{})
+=======
 def user_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -432,6 +481,7 @@ def send_mail_by_contact(request):
 		email.send()
 		print('heloo')
 		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
+<<<<<<< HEAD
 
 
 
@@ -449,3 +499,6 @@ def Log(request):
 	     	return HttpResponse("<script> window.location.replace('/login/'); </script>")
 	except:
  		return HttpResponse("<script> window.location.replace('/login/'); </script>")
+=======
+>>>>>>> b8b165508040b34db5dd91cb1ee7e2ede941495f
+>>>>>>> 66d3abf3b794a02a06ea16fa73fbb6f7480f0a6c
