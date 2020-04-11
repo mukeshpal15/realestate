@@ -21,9 +21,13 @@ def error(request):
 	return render(request,'Error.html',{})
 
 def index(request):
-	dic={'cdata':GetPropertyCategoryData()}
-	return render(request, 'index.html',dic)
-
+	b=0
+	obj=agent_account.objects.all()
+	if request.session.has_key('user_id'):
+		b=1
+		return render(request, 'index.html',{'obj': obj})
+	else:
+		return redirect('/error/')
 def properties(request):
 	return render(request, 'properties.html', {})
 
@@ -194,6 +198,7 @@ def saveproperty(request):
 
 def agent_signup(request):
 	if request.method=="POST":
+		
 		n= request.POST.get('name')
 		g= request.POST.get('gender')
 		e= request.POST.get('email')
@@ -201,11 +206,15 @@ def agent_signup(request):
 		c = request.POST.get('city')
 		ph= request.POST.get('phone')
 		aa=request.POST.get('aadhar')
+		fb=request.POST.get('facebook')
+		tw=request.POST.get('twitter')
+		LI=request.POST.get('linkedin')
+		m='agentpic\image.png'
 		u= 'not active'
 		status=u
 		randomString = uuid.uuid4().hex
 		p= randomString.lower()[0:8]
-
+		print('ko')
 		if agent_account.objects.filter(email=e).exists():
 			message= 'User Already Exist'
 			return render(request,'registration.html',{'message':message})
@@ -235,14 +244,13 @@ def agent_signup(request):
 
 				email = EmailMessage(subject, msg, to=[e])
 				email.send()
-
 				try:
 					sus='New Agent Register'
 					mess= ''' Hello sir,
 		This Person want to make your agent
 		detail of the person is here
 
-				'''+"Name :" +n+('\n')+"Gender :" +g+('\n')+"Mail ID :"+e+('\n')+"Phone no. :"+ph+('\n')+"Address :"+ad+('\n')+"City :"+c+('\n')+"Aadhar card no. :" +aa+'''
+				'''+"Name :" +n+('\n')+"Gender :" +g+('\n')+"Mail ID :"+e+('\n')+"Phone no. :"+ph+('\n')+"Address :"+ad+('\n')+"City :"+c+('\n')+"Aadhar card no. :" +aa+"Facebook link :"+fb+('\n')+"linkedIn link :"+LI+('\n')+"Twitter link. :"+tw +'''
 
 				Thanks & Regards
 				Real Estate''' 
@@ -251,16 +259,39 @@ def agent_signup(request):
 			
 					email = EmailMessage(sus, mess, to=['testm1214@gmail.com'])
 					email.send()
-					sv=agent_account(agent_id=uid, name=n, gender=g, email=e, address=ad, city=c, phone=ph, aadhar=aa, password=p, status=status)
+					sv=agent_account(agent_id=uid,
+									name=n,
+									gender=g,
+									email=e,
+									address=ad,
+									city=c,
+									phone=ph,
+									aadhar=aa,
+									password=p,
+									facebook=fb,
+									twitter=tw,
+									linkedin=LI,
+									status=status,
+									agentpic=m
+									  )
 					sv.save()
 					message='You are successfully registered.'	
 					return render(request,'registration.html', {'message':message})
 				except Exception:
-						message='Fill The form again'	
-						return render(request,'registration.html', {'message':message})
+					message='Fill The form again'	
+					return render(request,'registration.html', {'message':message})
 			except Exception:
 				message=' enter valid mail address'
 				return render(request,'registration.html', {'message':message})
+	else:
+		message=' enter valid mail address'
+		return render(request,'registration.html', {'message':message})
+
+def dele(request):
+	obj=agent_account.objects.all()
+	obj.delete()
+	return render(request, 'index.html',{})
+
 
 @csrf_exempt
 def openaddpropertycategory(request):
@@ -296,7 +327,6 @@ def savepropertyimages(request):
 	else:
 		return redirect('/error/')
 
-<<<<<<< HEAD
 @csrf_exempt
 def openpropertycategory(request):
 		category=request.GET.get('cname')
@@ -328,7 +358,7 @@ def propertypaginator(request):
 	return render(request,"propertycategories.html",dic)
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
-=======
+
 def user_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -383,15 +413,15 @@ def user_login(request):
 		h=0
 		e=request.POST.get('email')
 		p=request.POST.get('password')
-		ua = user_account.objects.all()
-		for elt in ua:
-			if elt.email==e and elt.password==p:
-				for i in ua:
-					b=1
-					userid=i.user_id
-					request.session['user_id'] = userid
-					break
-				print('go')
+		ua = user_account.objects.filter(email=e)
+		if user_account.objects.filter(email=e, password=p).exists:
+			print('ho')
+			for i in ua:
+				c=i.user_id
+				request.session['user_id']=c
+				b=1
+				print('lo')
+				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
 			return render(request, 'index.html', {'b':b, 'h': h})
@@ -481,7 +511,7 @@ def send_mail_by_contact(request):
 		email.send()
 		print('heloo')
 		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
-<<<<<<< HEAD
+
 
 
 
@@ -489,16 +519,17 @@ def send_mail_by_contact(request):
 
 @csrf_exempt
 def Log(request):
+	d=1
+	n=request.session['user_id']
+	request.session['user_id']=n
+	if request.session.has_key('user_id'):
+		request.session.flush()
+		
+		d=0
+		logout(request)
+		return redirect('/index/')
+	else:
+		return redirect('/index/')
 
-	try:
-	    if request.session.has_key('user_id'):
-	     	request.session.flush()
-	     	del request.session['user_id']
-	     	logout(request)
-	     	
-	     	return HttpResponse("<script> window.location.replace('/login/'); </script>")
-	except:
- 		return HttpResponse("<script> window.location.replace('/login/'); </script>")
-=======
->>>>>>> b8b165508040b34db5dd91cb1ee7e2ede941495f
->>>>>>> 66d3abf3b794a02a06ea16fa73fbb6f7480f0a6c
+	
+ 		

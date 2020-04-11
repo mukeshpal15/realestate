@@ -66,7 +66,7 @@ def GetAllPropertyData():
 			'pyear':x.Property_BuiltYear}
 		lt.append(dic)
 	return lt
-<<<<<<< HEAD
+
 
 def getuserinfo(user_id):
 	dic={}
@@ -77,7 +77,7 @@ def getuserinfo(user_id):
 		}
 		break
 	return dic
-=======
+
 def GetPropertyThumbData(category):
 	obj=PropertyData.objects.filter(Property_Category=category)
 	dic={}
@@ -99,4 +99,3 @@ def GetPropertyThumbData(category):
 			break
 		lt.append(dic)
 	return lt
->>>>>>> 66d3abf3b794a02a06ea16fa73fbb6f7480f0a6c

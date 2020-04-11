@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HomeSpace &mdash; MY ACCOUNT </title>
+    <title>HomeSpace &mdash; Admin Pannel</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{% static 'w3.css' %}">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
@@ -24,9 +24,27 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+    <!--===================================LOHIN============================================================-->
+  <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/utillogin.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/mainlogin.css' %}">
+  <!--==========ENDLOGIN=========================================================================--> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
   </head>
-  <body style="height:100%;background-size:100% 100%;background-image:url({% static 'images\myaccountbackground.jpg' %});">
+  <body>
   
   <div class="site-loader"></div>
   
@@ -74,7 +92,7 @@
                   <li>
                     <a href="\index\">Home</a>
                   </li>
-                  <li class="has-children active">
+                  <li class="has-children">
                     <a href="\properties\">Properties</a>
                     <ul class="dropdown">
                       <li><a href="#">Buy</a></li>
@@ -92,9 +110,7 @@
                   </li>
                   <li><a href="\blog\">Blog</a></li>
                   <li><a href="\about\">About</a></li>
-                  <li><a href="\contact\">Contact</a></li>
-                  <li><a href="\registration\">Sign Up</a></li>
-                  <li><a href="\login\">Login</a></li>
+              
                 </ul>
               </nav>
             </div>
@@ -105,79 +121,68 @@
       </div>
     </div>
 
-    <div class="pt-5" style="background-image:url({% static 'images/blueback.jpg' %});background-size:100% 100%;">
-      <center>
-      <h1 style="color:white;font-weight:bold;padding-bottom:48px;"> MY ACCOUNT </h1>
-      </center>
-    </div>
-    <div class="site-section site-section-sm bg-light">
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({% static 'images/hero_bg_2.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
-        <div class="w3-panel w3-display-container"style="background-color:orange;box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:125px;width:100%;">
-          <span onclick="this.parentElement.style.display='none'"
-          class="w3-button w3-display-topright">X</span>
-          <h2 style="color:white;padding-top:25px;padding-left:10px;font-weight:bold;">Hi, User</h2>
-          <p style="color:white;font-size:30px;padding-bottom:25px;">Good to see you again!!</p>
-        </div>
-    <div style="padding-top:30px;" class="w3-bar">
-      <button class="w3-bar-item w3-button" style="color:white;font-size:20px; width:33.3%;background-color:#01ADFF;">My Orders</button>
-      <button class="w3-bar-item w3-button " style="color:white;font-size:20px;width:33.3%;background-color:#0497DE;">My Blogs</button>
-      <button class="w3-bar-item w3-button " style="color:white;font-size:20px;width:33.3%;background-color:#0583BF;">Extra Button</button>
-    </div>
-    </div>
-    </div>
-    <div style="padding-top:0px;" class="site-section">
-      <div class="container">
-        
-        <CENTER>
-          <div class="site-section-title">
-            <h2>My Profile</h2>
-          </div>
-        </CENTER>
-       <DIV style="background-image:url({% static 'images/card.jpg' %});background-size:100% 100%;width:auto;padding-right:20px;" class="row w3-panel w3-card-4 w3-round-large">
-        <DIV class="columm"> 
-          <img style=" margin-left:20px;margin-bottom:20px;height:225px;width:190px;align:left;padding-left:0px;padding-top:20px;" class="w3-card-4" src="{% static 'images\profile.jpg' %}" alt="Person">
-          <button style=" width:190px;margin-left:20px;margin-bottom:20px;bacground-color:orange;" class="w3-button w3-block w3-ripple w3-red">Change Settings</button>
-        </DIV>
-        <DIV class="columm">
-          <P style="margin-bottom:0px;margin-top:20px;color:white;font-size:25px;padding-left:45px;"><strong>Email </strong></P>
-          <div style="font-size:20px;padding-left:10px;background-color:white;margin-left:45px;margin-right:45px;width:500px;margin-right:20px;height:35px;" class="w3-round-large">
-          <p>User Email</p>
-          </div>
-          <P style="margin-bottom:0px;margin-top:20px;color:white;font-size:25px;padding-left:45px;"><strong>Email </strong></P>
-          <div style="font-size:20px;padding-left:10px;background-color:white;margin-left:45px;width:500px;margin-right:20px;height:35px;" class="w3-round-large">
-          <p>User Email</p>
-          </div>
-          <P style="margin-bottom:0px;margin-top:20px;color:white;font-size:25px;padding-left:45px;"><strong>Email </strong></P>
-          <div style="font-size:20px;padding-left:10px;background-color:white;margin-left:45px;width:500px;margin-right:20px;height:35px;" class="w3-round-large">
-          <p>User Email</p>
-          </div>
-        </DIV>
-
-      </DIV>    
-        
-        </div>
-        </div>
-        
-        
-
-
-          
-    
-
-    <div class="site-section site-section-sm bg-primary">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <h2 class="text-white">Wide Range of Properties Just For You</h2>
-            <p class="lead text-white-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <div class="col-md-4 text-center">
-            <a href="#" class="btn btn-outline-primary btn-block py-3 btn-lg">See Properties</a>
+        <div class="row align-items-center justify-content-center text-center">
+          <div class="col-md-10">
+            <h1 class="mb-2">Agent Data</h1>
+            <div><a href="\index\">Home</a> <span class="mx-2 text-white">&bullet;</span> <strong class="text-white">Admin Pannel</strong></div>
           </div>
         </div>
       </div>
     </div>
-    
+
+    <div class="site-section">
+      <div class="container">
+        <div class="container">      
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Agent_id</th>
+                  <th>Fullname</th>
+                  <th>Gender</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>Phone No.</th>
+                  <th>Aadhar card no.</th>
+                  <th>Status</th>
+                  <th>Deactivate</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for i in active %}
+                <tr>
+                  <td>{{i.agent_id}}</td>
+                  <td>{{i.name}}</td>
+                  <td>{{i.gender}}</td>
+                  <td>{{i.email}}</td>
+                  <td>{{i.address}}</td>
+                  <td>{{i.city}}</td>
+                  <td>{{i.phone}}</td>
+                  <td>{{i.aadhar}}</td>
+                  <td style="color:green;">{{i.status}}</td>
+                  <td>{% csrf_token %}
+                  <form action="\make_deactive_agent\" method="POST">
+                    <input type="text" name="set" value="{{i.agent_id}}">
+                    <button style="color:red; ">deactive</button>
+                  </form></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  
+      </div>
+    </div>
+  </div>
 
     <footer class="site-footer">
       <div class="container">
@@ -213,7 +218,7 @@
                 </ul>
               </div>
             </div>
-
+<!--Table-->
 
           </div>
 
@@ -226,9 +231,30 @@
                   <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
                   <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
                 </div>
-
+                 <div> 
             
+                    <!--Table-->
+<table class="table table-striped w-auto">
 
+  <!--Table head-->
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Country</th>
+      <th>City</th>
+      <th>Position</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+
+  <!--Table body-->
+  <
+
+
+                  </div>
           </div>
           
         </div>
@@ -261,6 +287,23 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
-    
+  <!--====================login=========================================-->
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+  <script >
+    $('.js-tilt').tilt({
+      scale: 1.1
+    })
+  </script>
+<!--===============================================================================================-->
+  <script src="{% static 'js/main.js' %}"></script>
+    {{ alert|safe }}
   </body>
 </html>

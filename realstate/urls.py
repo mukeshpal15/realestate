@@ -31,7 +31,7 @@ urlpatterns = [
     path('make_deactive_agent/',make_deactive_agent),
     path('openpropertycategory/',openpropertycategory),
     path('openmyaccount/',openmyaccount),
-    path('propertypaginator/',propertypaginator)
+    path('propertypaginator/',propertypaginator),
     path('user_signup/',user_signup),
     path('userregistation/', userregistation),
     path('loginformuser/', loginformuser),
@@ -40,6 +40,7 @@ urlpatterns = [
     path('password_send_to_user/', password_send_to_user),
     path('send_mail_by_contact/', send_mail_by_contact),
     path('Log/', Log),
+    path('dele/',dele),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
