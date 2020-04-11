@@ -22,31 +22,101 @@ def error(request):
 
 def index(request):
 	b=0
+	h=0
 	obj=agent_account.objects.all()
-	if request.session.has_key('user_id'):
-		b=1
-		return render(request, 'index.html',{'obj': obj})
-	else:
-		return redirect('/error/')
+	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			return render(request, 'index.html',{'obj': obj,})
+	except Exception:
+		return render(request, 'index.html',{'obj': obj,})
 def properties(request):
-	return render(request, 'properties.html', {})
+	b=0
+	h=0
+	obj=agent_account.objects.all()
+	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			return render(request, 'properties.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			return render(request, 'properties.html',{'obj': obj,})
+	except Exception:
+		return render(request, 'properties.html',{'obj': obj,})
+	
 
 def blog(request):
-	return render(request, 'blog.html', {})
+	b=0
+	h=0
+	obj=agent_account.objects.all()
+	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			return render(request, 'blog.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			return render(request, 'blog.html',{'obj': obj,})
+	except Exception:
+		return render(request, 'blog.html',{'obj': obj,})
+
 def about(request):
 	b=0
-	t=0
-	if request.session.has_key('user_id'):
-		b=1
-		t=1
-		return render(request, 'about.html', {'b':b, 't':t})
-	else:
-		return render(request, 'login.html', {})
+	h=0
+	obj=agent_account.objects.all()
+	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			return render(request, 'about.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			return render(request, 'about.html',{'obj': obj,})
+	except Exception:
+		return render(request, 'about.html',{'obj': obj,})
 def property_detail(request):
-	return render(request, 'property-details.html', {})
+	b=0
+	h=0
+	obj=agent_account.objects.all()
+	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			return render(request, 'property-details.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			return render(request, 'property-details.html',{'obj': obj,})
+	except Exception:
+		return render(request, 'property-details.html',{'obj': obj,})
+	
 def contact(request):
-	return render(request, 'contact.html', {})
+	b=0
+	h=0
+	obj=agent_account.objects.all()
+	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			return render(request, 'contact.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			return render(request, 'contact.html',{'obj': obj,})
+	except Exception:
+		return render(request, 'contact.html',{'obj': obj,})
+	
 def registration(request):
+
 	return render(request, 'registration.html', {})
 def login(request):
 	return render(request, 'login.html', {})
@@ -123,7 +193,7 @@ def openaddproperty(request):
 @csrf_exempt
 def openaddpropertycategory(request):
 	if request.method=="POST":
-		return render(request, "addpropertycategory.html",{})
+		return render(request, "addpropertycategory.html",{'cdata':GetPropertyCategoryData()})
 
 @csrf_exempt
 def savepropertycategory(request):
@@ -149,7 +219,7 @@ def savepropertycategory(request):
 				alert("'''
 				b2='''");</script>'''
 				alert=b1+'Saved'+b2
-				return render(request, "addpropertycategory.html",{'alert':alert})
+				return render(request, "addpropertycategory.html",{'alert':alert,'cdata':GetPropertyCategoryData()})
 
 	else:
 		return redirect('/error/')
@@ -359,6 +429,9 @@ def propertypaginator(request):
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
 
+def openchangeaccountdetails(request):
+	return render(request,"changeaccountdetails.html",{})
+
 def user_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -424,12 +497,14 @@ def user_login(request):
 				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
-			return render(request, 'index.html', {'b':b, 'h': h})
+			return render(request,"myaccount.html",{})
 		else:
 			print('helo')
 			message='Please Enter valid details'
 			return render(request,'userlogin.html',{'message': message})
 
+def openmyaccount(request):
+	return render(request,"myaccount.html",{})
 
 @csrf_exempt
 def password_send_to_user(request):
@@ -512,6 +587,8 @@ def send_mail_by_contact(request):
 		print('heloo')
 		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
 
+def openmyaccount(request):
+	return render(request,"myaccount.html",{})
 
 
 
@@ -519,17 +596,33 @@ def send_mail_by_contact(request):
 
 @csrf_exempt
 def Log(request):
-	d=1
-	n=request.session['user_id']
-	request.session['user_id']=n
-	if request.session.has_key('user_id'):
+	b=0
+	h=0
+	obj=agent_account.objects.all()
+	try:
+		n=request.session['user_id']
+		del request.session['user_id']
 		request.session.flush()
-		
-		d=0
-		logout(request)
-		return redirect('/index/')
-	else:
-		return redirect('/index/')
+		if user_account.objects.filter(user_id=request.session['user_id']).get():
+			b=1
+			h=0
+			print('h')
+			return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+		else:
+			b=1
+			print('g')
+			return render(request, 'index.html',{'obj': obj,})
+	except Exception:
+		print('f')
+		return render(request, 'index.html',{'obj': obj,})
+	
 
 	
  		
+
+@csrf_exempt
+def openproperty(request):
+	pid=request.GET.get('pid')
+	dic=GetPropertyData(pid)
+	return render(request,'property-details.html',dic)
+

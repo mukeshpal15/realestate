@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HomeSpace &mdash; Colorlib Website Template</title>
+    <title>HomeSpace &mdash; {{ name|safe }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -93,8 +93,9 @@
                   <li><a href="\blog\">Blog</a></li>
                   <li><a href="\about\">About</a></li>
                   <li><a href="\contact\">Contact</a></li>
+                  {% if b == h %}
                   <li class="has-children">
-                    <a href="#">Agents</a>
+                    <a href="#">Agents</a> 
                     <ul class="dropdown">
                       <li><a href="\registration\">Sign Up</a></li>
                       <li><a href="\login\">Login</a></li>
@@ -105,8 +106,10 @@
                     <ul class="dropdown">
                       <li><a href="\userregistation\">Sign Up</a></li>
                       <li><a href="\loginformuser\">Login</a></li>
+                      {% else %}
+                      <li><a href="#">Logout</a></li>
                     </ul>
-                  </li>
+                  </li>{% endif %}
                 </ul>
               </nav>
             </div>

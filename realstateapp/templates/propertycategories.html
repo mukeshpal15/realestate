@@ -92,10 +92,23 @@
                   </li>
                   <li><a href="\blog\">Blog</a></li>
                   <li><a href="\about\">About</a></li>
-                  <li><a href="\contact\">Contact</a></li>
-                  <li><a href="\registration\">Sign Up</a></li>
-                  <li><a href="\login\">Login</a></li>
-                </ul>
+                  {% if b == h %}
+                  <li class="has-children">
+                    <a href="#">Agents</a> 
+                    <ul class="dropdown">
+                      <li><a href="\registration\">Sign Up</a></li>
+                      <li><a href="\login\">Login</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-children">
+                    <a href="#">Users</a>
+                    <ul class="dropdown">
+                      <li><a href="\userregistation\">Sign Up</a></li>
+                      <li><a href="\loginformuser\">Login</a></li>
+                      {% else %}
+                      <li><a href="#">Logout</a></li>
+                    </ul>
+                  </li>{% endif %}
               </nav>
             </div>
            
@@ -114,43 +127,42 @@
       <div class="container">
         <div class="row mb-5">
           {% for x in cdata %}
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="prop-entry d-block">
-              <figure>
-                <img style="height:250px;" src="{{ x.image|safe }}" alt="Image" class="img-fluid">
-              </figure>
-              <div class="prop-text">
-                <div class="inner">
-                  <form action="" method="POST">
-                    <input type="hidden" value="{{ id|safe }}">
-                    <input type="submit" value="Rs. {{ x.price|safe }}/-" class="price rounded">
-                  </form>
-                  <h3 class="title">{{ x.name|safe }}</h3>
-                  <p class="location">{{ x.address|safe }}</p>
-                </div>
-                <div class="prop-more-info">
-                  <div class="inner d-flex">
-                    <div class="col">
-                      <span>Area:</span>
-                      <strong>{{ x.area|safe }} sq.ft.</sup></strong>
-                    </div>
-                    <div class="col">
-                      <span>Beds:</span>
-                      <strong>{{ x.beds|safe }}</strong>
-                    </div>
-                    <div class="col">
-                      <span>Baths:</span>
-                      <strong>{{ x.baths|safe }}</strong>
-                    </div>
-                    <div class="col">
-                      <span>Garages:</span>
-                      <strong>{{ x.garages|safe }}</strong>
+          <a href="/openproperty/?pid={{ x.id|safe }}">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="prop-entry d-block">
+                <figure>
+                  <img style="height:250px;" src="{{ x.image|safe }}" alt="Image" class="img-fluid">
+                </figure>
+                <div class="prop-text">
+                  <div class="inner">
+                    <a href="/openproperty/?pid={{ x.id|safe }}" class="price rounded">Rs. {{ x.price|safe }}/-</a>
+                    <h3 class="title">{{ x.name|safe }}</h3>
+                    <p class="location">{{ x.address|safe }}</p>
+                  </div>
+                  <div class="prop-more-info">
+                    <div class="inner d-flex">
+                      <div class="col">
+                        <span>Area:</span>
+                        <strong>{{ x.area|safe }} sq.ft.</sup></strong>
+                      </div>
+                      <div class="col">
+                        <span>Beds:</span>
+                        <strong>{{ x.beds|safe }}</strong>
+                      </div>
+                      <div class="col">
+                        <span>Baths:</span>
+                        <strong>{{ x.baths|safe }}</strong>
+                      </div>
+                      <div class="col">
+                        <span>Garages:</span>
+                        <strong>{{ x.garages|safe }}</strong>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
           {% endfor %}
         </div>
 
