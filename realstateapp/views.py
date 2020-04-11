@@ -498,3 +498,6 @@ def openproperty(request):
 	pid=request.GET.get('pid')
 	dic=GetPropertyData(pid)
 	return render(request,'property-details.html',dic)
+
+def openmyblogs(request):
+	return render(request,'myblogs.html',{})

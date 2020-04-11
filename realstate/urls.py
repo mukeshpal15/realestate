@@ -41,7 +41,8 @@ urlpatterns = [
     path('send_mail_by_contact/', send_mail_by_contact),
     path('Log/', Log),
     path('openproperty/', openproperty),
-    path('openchangeaccountdetails/',openchangeaccountdetails)
+    path('openchangeaccountdetails/',openchangeaccountdetails),
+    path('openmyblogs/',openmyblogs)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
