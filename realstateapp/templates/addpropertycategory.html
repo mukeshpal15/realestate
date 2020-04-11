@@ -132,14 +132,14 @@
     <div class="site-section">
       <div class="container">
         <div class="row">
-
-        <form class="login100-form validate-form" action="/savepropertycategory/" method="POST" enctype="multipart/form-data">
+          <div class="column">
+              <form class="login100-form validate-form" action="/savepropertycategory/" method="POST" enctype="multipart/form-data">
                <span class="login100-form-title">
                   Add Property Category
                </span>
 
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="text" name="name" placeholder="Category Name">
+                  <input class="input100" type="text" name="name" placeholder="Category Name" required>
                </div>
 
                <div class="wrap-input100 validate-input">
@@ -150,24 +150,25 @@
                <div class="container-login100-form-btn">
                   <input class="login100-form-btn" type="submit" value="Save">
                </div>
-
             </form>
-
-
+          </div>
+        
+        <div class="column" style="margin-left:20px;width:825px;">
+          <table class="w3-table-all w3-hoverable" style="margin-top:20px;">
+            <tr class="w3-blue">
+              <th>Category ID</th>
+              <th>Category Name</th>
+            </tr>
+            {% for x in cdata %}
+            <tr>
+              <td>{{ x.cid|safe }}</td>
+              <td>{{ x.cname|safe }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
 
       </div>
-      <table class="w3-table-all w3-hoverable" style="margin-top:20px;">
-        <tr class="w3-blue">
-          <th>Category ID</th>
-          <th>Category Name</th>
-        </tr>
-        {% for x in cdata %}
-        <tr>
-          <td>{{ x.cid|safe }}</td>
-          <td>{{ x.cname|safe }}</td>
-        </tr>
-        {% endfor %}
-      </table>
     </div>
   </div>
 

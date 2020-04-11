@@ -96,3 +96,27 @@ def GetPropertyThumbData(category):
 			break
 		lt.append(dic)
 	return lt
+
+def GetPropertyData(pid):
+	obj=PropertyData.objects.filter(Property_ID=pid)
+	dic={}
+	for x in obj:
+		dic={
+		'id':x.Property_ID,
+		'name':x.Property_Name,
+		'price':x.Property_Price,
+		'about':x.Property_About,
+		'address':x.Property_Address,
+		'area':x.Property_Area,
+		'beds':x.Property_Beds,
+		'baths':x.Property_Baths,
+		'garages':x.Property_Garages,
+		'category':x.Property_Category,
+		'builtyear':x.Property_BuiltYear,
+		'pricepersqft':str(float(x.Property_Price)/float(x.Property_Area))
+		}
+		obj1=PropertyImagesData.objects.filter(Property_ID=x.Property_ID)
+		for y in obj1:
+			dic.update({'image':y.Property_Image.url})
+			break
+	return dic

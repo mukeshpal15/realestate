@@ -131,35 +131,35 @@
     <div class="site-section">
       <div class="container">
         <div class="row">
-
-        <form class="login100-form validate-form" action="/saveproperty/" method="POST">
+          <div class="column">
+            <form class="login100-form validate-form" action="/saveproperty/" method="POST">
                <span class="login100-form-title">
                   Add Property
                </span>
 
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="text" name="name" placeholder="Property Name">
+                  <input class="input100" type="text" name="name" placeholder="Property Name" required>
                </div>
                <div class="wrap-input100 validate-input">
-                  <textarea class="input100" type="text" name="about" placeholder="About Property" style="height:150px;width:100%;"></textarea>
+                  <textarea class="input100" type="text" name="about" placeholder="About Property" style="height:150px;width:100%;" required></textarea>
                </div>
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="number" name="price" placeholder="Property Price">
+                  <input class="input100" type="number" name="price" placeholder="Property Price" required>
                </div>
                <div class="wrap-input100 validate-input">
-                  <textarea class="input100" type="text" name="address" placeholder="Property Address" style="height:150px;width:100%;"></textarea>
+                  <textarea class="input100" type="text" name="address" placeholder="Property Address" style="height:150px;width:100%;" required></textarea>
                </div>
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="number" name="area" placeholder="Property Area (in Sq. Ft.)">
+                  <input class="input100" type="number" name="area" placeholder="Property Area (in Sq. Ft.)" required>
                </div>
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="number" name="beds" placeholder="Number of Beds in Property">
+                  <input class="input100" type="number" name="beds" placeholder="Number of Beds in Property" required>
                </div>
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="number" name="baths" placeholder="Number of Bathrooms">
+                  <input class="input100" type="number" name="baths" placeholder="Number of Bathrooms" required>
                </div>
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="number" name="garages" placeholder="Number of Garages">
+                  <input class="input100" type="number" name="garages" placeholder="Number of Garages" required>
                </div>
                <div class="wrap-input100 validate-input">
                   <select class="input100" name="category">
@@ -169,34 +169,35 @@
                   </select>
                </div>
                <div class="wrap-input100 validate-input">
-                  <input class="input100" type="text" name="builtyear" placeholder="Year Built">
+                  <input class="input100" type="text" name="builtyear" placeholder="Year Built" required>
                </div>
 
                <div class="container-login100-form-btn">
                   <input class="login100-form-btn" type="submit" value="Save">
                </div>
-
             </form>
-
-      </div>
-      <table class="w3-table-all w3-hoverable" style="margin-top:20px;">
-        <tr class="w3-blue">
-          <th>Property ID</th>
-          <th>Property Name</th>
-          <th>Property Price</th>
-          <th>Property Category</th>
-          <th>Property Built Year</th>
-        </tr>
-        {% for x in pdata %}
-        <tr>
-          <td>{{ x.pid|safe }}</td>
-          <td>{{ x.pname|safe }}</td>
-          <td>{{ x.pprice|safe }}</td>
-          <td>{{ x.pcategory|safe }}</td>
-          <td>{{ x.pyear|safe }}</td>
-        </tr>
-        {% endfor %}
-      </table>
+          </div>
+          <div class="column" style="margin-left:20px;width:825px;">
+            <table class="w3-table-all w3-hoverable" style="margin-top:20px;">
+              <tr class="w3-blue">
+                <th>Property ID</th>
+                <th>Property Name</th>
+                <th>Property Price</th>
+                <th>Property Category</th>
+                <th>Property Built Year</th>
+              </tr>
+              {% for x in pdata %}
+              <tr>
+                <td>{{ x.pid|safe }}</td>
+                <td>{{ x.pname|safe }}</td>
+                <td>{{ x.pprice|safe }}</td>
+                <td>{{ x.pcategory|safe }}</td>
+                <td>{{ x.pyear|safe }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+      </div>  
     </div>
   </div>
 

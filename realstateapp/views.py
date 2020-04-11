@@ -327,6 +327,8 @@ def propertypaginator(request):
 	return render(request,"propertycategories.html",dic)
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
+def openchangeaccountdetails(request):
+	return render(request,"changeaccountdetails.html",{})
 def user_signup(request):
 	if request.method=="POST":
 		n= request.POST.get('name')
@@ -491,3 +493,8 @@ def Log(request):
 	     	return HttpResponse("<script> window.location.replace('/login/'); </script>")
 	except:
  		return HttpResponse("<script> window.location.replace('/login/'); </script>")
+@csrf_exempt
+def openproperty(request):
+	pid=request.GET.get('pid')
+	dic=GetPropertyData(pid)
+	return render(request,'property-details.html',dic)
