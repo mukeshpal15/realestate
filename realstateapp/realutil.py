@@ -66,6 +66,7 @@ def GetAllPropertyData():
 			'pyear':x.Property_BuiltYear}
 		lt.append(dic)
 	return lt
+
 def getuserinfo(user_id):
 	dic={}
 	obj=user_account.objects.filter(user_id=user_id)
@@ -75,6 +76,7 @@ def getuserinfo(user_id):
 		}
 		break
 	return dic
+
 def GetPropertyThumbData(category):
 	obj=PropertyData.objects.filter(Property_Category=category)
 	dic={}
@@ -96,6 +98,7 @@ def GetPropertyThumbData(category):
 			break
 		lt.append(dic)
 	return lt
+
 
 def GetPropertyData(pid):
 	obj=PropertyData.objects.filter(Property_ID=pid)
@@ -119,4 +122,19 @@ def GetPropertyData(pid):
 		for y in obj1:
 			dic.update({'image':y.Property_Image.url})
 			break
+	return dic
+def GetUserData(email):
+	obj=user_account.objects.filter(email=email)
+	dic={}
+	for x in obj:
+		dic={
+			'userid':x.user_id,
+			'name':x.name,
+			'gender':x.gender,
+			'email':x.email,
+			'address':x.address,
+			'city':x.city,
+			'phone':x.phone
+		}
+		break
 	return dic

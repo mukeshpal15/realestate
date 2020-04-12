@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HomeSpace &mdash; Colorlib Website Template</title>
+    <title>HomeSpace &mdash; My Blogs</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" href="{% static 'w3.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -63,8 +64,13 @@
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
+<<<<<<< HEAD
               <h1><a href="\index\" class="h5 text-blue" style="font-size:25px;"><img src="{% static 'images/logo.png' %}" style="width:100px;"><strong> Shri Raj Property</strong></a></h1>            </div>
                           </div>
+=======
+              <h1><a href="\index\" class="h5 text-blue" style="font-size:25px;"><img src="{% static 'images/logo.png' %}" style="width:100px;"><strong> Shri Raj Property</strong></a></h1>
+            </div>
+>>>>>>> eed5eeaab5791c6eeedbfd2c5bebc0a000befdb7
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
 
@@ -118,15 +124,10 @@
       </div>
     </div>
 
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({% static 'images/hero_bg_2.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-          <div class="col-md-10">
-            <h1 class="mb-2">My Blog</h1>
-            <div><a href="\index\">Home</a> <span class="mx-2 text-white">&bullet;</span> <strong class="text-white">My Blog</strong></div>
-          </div>
-        </div>
-      </div>
+    <div class="pt-5" style="background-image:url({% static 'images/orangeback.jpg' %});">
+      <center>
+      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;">MY BlOGS</h1>
+      </center>
     </div>
 
     <div class="site-section site-section-sm bg-light">
@@ -202,131 +203,30 @@
     </div>
 
     
-    <div class="site-section">
+  <div class="site-section">
     <div class="container">
       <div class="row mb-5 justify-content-center">
         <div class="col-md-7">
           <div class="site-section-title text-center">
-            <h2>Testimonies</h2>
+            <h2>Post Blog</h2>
           </div>
         </div>
       </div>
-      <div class="row block-13">
 
-        <div class="nonloop-block-13 owl-carousel">
+      <form>
+        <input style="border-radius:20px;" class="w3-input w3-border w3-hover-orange" placeholder="Title Here" type="text">
+        <textarea style="margin-top:30px;border-radius:20px;height:150px;" class="w3-input w3-border w3-hover-orange" placeholder="Blog Here" type="text"></textarea>
+        <label style="border-radius:20px;margin-top:30px;">Upload a Image Here</label>
+        <input class="w3-input w3-border w3-hover-orange" placeholder="Title Here" type="file">
+        <input style="margin-top:30px;border-radius:20px;" type="submit" value="Post Blog" class="w3-button w3-block w3-ripple w3-black">
 
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Megan Smith</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
+      </form>
 
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Brooke Cagle</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
+   </div>
+  </div>
 
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Philip Martin</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
 
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Megan Smith</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
 
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Brooke Cagle</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Philip Martin</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Megan Smith</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Brooke Cagle</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="slide-item">
-            <div class="team-member text-center">
-              <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
-              <div class="text p-3">
-                <h2 class="mb-2 font-weight-light text-black h4">Philip Martin</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Guest</span>
-                <p class="mb-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. &rdquo;</p>
-                
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        </div>
-      </div>
     </div>
 
 

@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
@@ -44,7 +44,44 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
   </head>
+<<<<<<< HEAD:realstateapp/templates/userdata.html
   <body>
+=======
+  <style type="text/css">
+  /* The grid: Three equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 50px;
+      text-align: center;
+      font-size: 25px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .containerTab {
+      padding: 20px;
+      color: white;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Closable button inside the image */
+    .closebtn {
+      float: right;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+  </style>
+
+  <body style="height:100%;background-size:100% 100%;background-image:url({% static 'images\myaccountbackground.jpg' %});">
+>>>>>>> 417349c3b8675b6f04ea20adc0a7c9c1e1c8cd5b:realstateapp/templates/myaccount.html
   
   <div class="site-loader"></div>
   
@@ -81,8 +118,8 @@
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
-              <h1><a href="\index\" class="h5 text-blue" style="font-size:25px;"><img src="{% static 'images/logo.png' %}" style="width:100px;"><strong> Shri Raj Property</strong></a></h1>            </div>
-                          </div>
+              <h1 class=""><a href="\index\" class="h5 text-uppercase text-black"><strong>HomeSpace<span class="text-danger">.</span></strong></a></h1>
+            </div>
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
 
@@ -108,9 +145,15 @@
                       </li>
                     </ul>
                   </li>
+<<<<<<< HEAD:realstateapp/templates/userdata.html
                   <li><a href="\blog\">Blog</a></li>
                   <li><a href="\about\">About</a></li>
               
+=======
+                  <li><a href="\blog\">My Blogs</a></li>
+                  <li><a href="\registration\">My Orders</a></li>
+                  <li><a class="w3-bar-item w3-button" style="background-color:orange;color:white;padding-right:10px;font-weight:bold;" href="\login\">Logout</a></li>
+>>>>>>> 417349c3b8675b6f04ea20adc0a7c9c1e1c8cd5b:realstateapp/templates/myaccount.html
                 </ul>
               </nav>
             </div>
@@ -121,7 +164,16 @@
       </div>
     </div>
 
+<<<<<<< HEAD:realstateapp/templates/userdata.html
     <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({% static 'images/hero_bg_2.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
+=======
+    <div class="pt-5" style="background-image:url({% static 'images/orangeback.jpg' %});">
+      <center>
+      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;"> MY ACCOUNT </h1>
+      </center>
+    </div>
+    <div class="site-section site-section-sm bg-light">
+>>>>>>> 417349c3b8675b6f04ea20adc0a7c9c1e1c8cd5b:realstateapp/templates/myaccount.html
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
           <div class="col-md-10">
@@ -129,11 +181,21 @@
             <div><a href="\index\">Home</a> <span class="mx-2 text-white">&bullet;</span> <strong class="text-white">Admin Pannel</strong></div>
           </div>
         </div>
+<<<<<<< HEAD:realstateapp/templates/userdata.html
       </div>
+=======
+    <div style="padding-top:30px;" class="w3-bar">
+      <button class="w3-bar-item w3-button" style="color:white;font-size:20px; width:33.3%;background-color:black;">My Orders</button>
+      <button class="w3-bar-item w3-button " style="color:white;font-size:20px;width:33.3%;background-color:orange;">My Blogs</button>
+      <button class="w3-bar-item w3-button " style="color:white;font-size:20px;width:33.3%;background-color:black;">Extra Button</button>
+    </div>
+    </div>
+>>>>>>> 417349c3b8675b6f04ea20adc0a7c9c1e1c8cd5b:realstateapp/templates/myaccount.html
     </div>
 
     <div class="site-section">
       <div class="container">
+<<<<<<< HEAD:realstateapp/templates/userdata.html
         <div class="container">      
           <div class="table-responsive">
             <table class="table table-bordered">
@@ -162,10 +224,6 @@
                   <td>{{i.city}}</td>
                   <td>{{i.phone}}</td>
                   <td>{{i.aadhar}}</td>
-                  <td>{{i.facebook}}</td>
-                  <td>{{i.twitter}}</td>
-                  <td>{{i.linkedin}}</td>
-                  <td>{{i.agentpic}}</td>
                   <td style="color:green;">{{i.status}}</td>
                   <td>{% csrf_token %}
                   <form action="\make_deactive_agent\" method="POST">
@@ -183,52 +241,141 @@
     </div>
   </div>
 
-  <div class="site-section">
-      <div class="container">
-        <div class="container">      
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Agent_id</th>
-                  <th>Fullname</th>
-                  <th>Gender</th>
-                  <th>Email</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>Phone No.</th>
-                  <th>Aadhar card no.</th>
-                  <th>Status</th>
-                  <th>activate</th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for i in deactive %}
-                <tr>
-                  <td>{{i.agent_id}}</td>
-                  <td>{{i.name}}</td>
-                  <td>{{i.gender}}</td>
-                  <td>{{i.email}}</td>
-                  <td>{{i.address}}</td>
-                  <td>{{i.city}}</td>
-                  <td>{{i.phone}}</td>
-                  <td>{{i.aadhar}}</td>
-                  <td style="color:red;">{{i.status}}</td>
-                  <td>{% csrf_token %}
-                  <form action="\make_active_agent\" method="POST">
-                    <input type="text" name="set" value="{{i.agent_id}}">
-                    <button style="color:green; ">active</button></td>
-                  </form>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
+  
       </div>
     </div>
   </div>
+=======
+        
+        <CENTER>
+          <div class="site-section-title">
+            <h2>My Profile</h2>
+          </div>
+        </CENTER>
+       <DIV style="background-image:url({% static 'images/card.jpg' %});background-size:100% 100%;width:80%;padding-right:20px;margin:0 auto;" class="row w3-panel w3-card-4 w3-round-large">
+        <DIV class="columm"> 
+          <img style=" margin-left:20px;margin-bottom:20px;height:225px;width:190px;align:left;padding-left:0px;padding-top:20px;" class="w3-card-4" src="{% static 'images\profile.jpg' %}" alt="Person">
+          <a style="width:190px;margin-left:20px;margin-bottom:20px;bacground-color:orange;" href="/openchangeaccountdetails/" class="w3-button w3-block w3-ripple w3-orange">Change Details</a>
+        </DIV>
+        <DIV class="columm">
+          
+          <P style="margin-bottom:0px;margin-top:20px;font-size:22px;padding-left:45px;"><i class="fa fa-user"></i> : User Name Here</P>
+
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-envelope"></i> : email@example.com</P>
+
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-map-marker"></i> : Address Here</P>
+
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-phone"></i> : Contact Here</P>
+
+          </div>
+        </DIV>
+
+      </DIV>    
+        
+        </div>
+        </div>
+        
+        
+        <CENTER>
+          <div class="site-section-title">
+            <h2>My Blogs</h2>
+          </div>
+        </CENTER>
+        <!-- The grid: three columns -->
+  <div style="margin:0 auto;width:80%">
+    <div class="row">
+      <div class="column w3-panel w3-leftbar w3-border-orange w3-white" onclick="openTab('b1');" style="padding-top:5px;width:31%;height:100px;margin-bottom:20px;margin-right:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog1</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P>
+      </div>
+      <div class="column w3-panel w3-leftbar w3-border-orange w3-white" onclick="openTab('b2');" style="padding-top:0px;width:31%;height:100px;margin-bottom:20px;margin-right:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog2</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P>
+      </div>
+      
+      <div class="column w3-panel w3-leftbar w3-border-orange w3-white" onclick="openTab('b3');" style="padding-top:0px;width:31%;height:100px;margin-bottom:20px;margin-right:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog3</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P></div>
+      <div class="column w3-panel w3-leftbar w3-border-orange w3-white" onclick="openTab('b4');" style="padding-top:0px;width:31%;height:100px;margin-bottom:20px;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2>Blog4</h2>
+        <P style="font-size:22px;">Your Blog Title Here</P></div>
+    </div>
+
+    <div id="b1" class="containerTab w3-round-large" style="margin-bottom:20px;display:none;background-color:orange;padding:0px 0px 0px 0px;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:black;margin-right:20px;">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;border-style:solid;border-color:white;border-radius:20px;border-width:5px;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;font-weight:bold;">Your Blog 1</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="b2" class="containerTab w3-round-large" style="margin-bottom:20px;display:none;background-color:orange;padding:0px 0px 0px 0px;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn"style="color:black;margin-right:20px;">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;border-style:solid;border-color:white;border-radius:20px;border-width:5px;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;font-weight:bold;">Your Blog 2</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="b3" class="containerTab w3-round-large" style="margin-bottom:20px;display:none;background-color:orange;padding:0px 0px 0px 0px;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn"style="color:black;margin-right:20px;">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;border-style:solid;border-color:white;border-radius:20px;border-width:5px;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;font-weight:bold;">Your Blog 3</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+    <div id="b4" class="containerTab w3-round-large" style="margin-bottom:20px;display:none;background-color:orange;padding:0px 0px 0px 0px;">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn"style="color:black;margin-right:20px;">x</span>
+      <div class="row">
+        <div class="column" style="margin:0px;">
+          <img src="{% static 'images/hero_bg_1.jpg' %}" style="width:300px;height:auto;border-style:solid;border-color:white;border-radius:20px;border-width:5px;">
+        </div>
+        <div class="column">
+          <h2 style="color:black;font-weight:bold;">Your Blog 4</h2>
+          <p style="color:black;font-size:18px;"><span class="icon-pencil"></span> Your Blog Body</p>
+          <p style="color:black;font-size:15px;"><span class="icon-calendar"></span> Time &amp; Date here....</p>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+          
+    
+
+    <div class="site-section site-section-sm bg-primary">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h2 class="text-white">Wide Range of Properties Just For You</h2>
+            <p class="lead text-white-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <a href="#" class="btn btn-outline-primary btn-block py-3 btn-lg">See Properties</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+>>>>>>> 417349c3b8675b6f04ea20adc0a7c9c1e1c8cd5b:realstateapp/templates/myaccount.html
 
     <footer class="site-footer">
       <div class="container">
@@ -333,6 +480,7 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+<<<<<<< HEAD:realstateapp/templates/userdata.html
   <!--====================login=========================================-->
   <!--===============================================================================================-->
   <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
@@ -351,5 +499,18 @@
 <!--===============================================================================================-->
   <script src="{% static 'js/main.js' %}"></script>
     {{ alert|safe }}
+=======
+ <script type="text/javascript">
+  // Hide all elements with class="containerTab", except for the one that matches the clickable grid column
+  function openTab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  }
+  </script>   
+>>>>>>> 417349c3b8675b6f04ea20adc0a7c9c1e1c8cd5b:realstateapp/templates/myaccount.html
   </body>
 </html>

@@ -38,7 +38,11 @@ class agent_account(models.Model):
 	phone=models.CharField(max_length=15)
 	aadhar=models.CharField(max_length=16)
 	password=models.CharField(max_length=40)
+	facebook=models.CharField(max_length=150, default='NA')
+	twitter=models.CharField(max_length=150, default='NA')
+	linkedin=models.CharField(max_length=150, default='NA')
 	status = models.CharField(max_length=10)
+	agentpic=models.ImageField(upload_to='agentpic')
 	class Meta:
 		db_table="agent_account"
 
@@ -53,3 +57,10 @@ class user_account(models.Model):
 	password=models.CharField(max_length=40)
 	class Meta:
 		db_table="user_account"
+
+class myaccount(models.Model):
+	name = models.CharField(max_length=10)
+	pic = models.ImageField(upload_to='pic')
+	class Meta:
+		db_table="myaccount"
+			
