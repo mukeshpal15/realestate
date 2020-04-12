@@ -25,95 +25,157 @@ def index(request):
 	h=0
 	obj=agent_account.objects.all()
 	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			return render(request, 'index.html',{'obj': obj,})
+
+		try:	
+			n=request.session['user_id']
+			if user_account.objects.filter(user_id=n).get():
+				b=1
+				h=0
+				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'index.html',{'obj': obj,})
+		except:
+			a=request.session['agent_id']
+			if agent_account.objects.filter(agent_id=a).get():
+				b=1
+				h=0
+				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				return render(request, 'index.html',{'obj': obj,})
 	except Exception:
 		return render(request, 'index.html',{'obj': obj,})
+
+		
+	
 def properties(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
 	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			return render(request, 'properties.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			return render(request, 'properties.html',{'obj': obj,})
+		try:
+			n=request.session['user_id']
+			if user_account.objects.filter(user_id=n).get():
+				b=1
+				h=0
+				return render(request, 'properties.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'properties.html',{'obj': obj,})
+		except Exception:
+			a=request.session['agent_id']
+			if agent_account.objects.filter(agent_id=a).get():
+				b=1
+				h=0
+				return render(request, 'properties.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				return render(request, 'properties.html',{'obj': obj,})
 	except Exception:
-		return render(request, 'properties.html',{'obj': obj,})
-	
+		return render(request, 'properties.html',{'obj': obj,})	
 
 def blog(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
-	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			return render(request, 'blog.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			return render(request, 'blog.html',{'obj': obj,})
+	dic=blog_table.objects.all()
+	try:	
+		try:
+			n=request.session['user_id']
+			if user_account.objects.filter(user_id=n).get():
+				b=1
+				h=0
+				return render(request, 'blog.html',{'obj': obj, 'b':b, 'h':h,'elt':dic})
+			else:
+				b=1
+				return render(request, 'blog.html',{'obj': obj, 'elt':dic})
+		except Exception:
+			a=request.session['agent_id']
+			if agent_account.objects.filter(agent_id=a).get():
+				b=1
+				h=0
+				return render(request, 'blog.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
+			else:
+				return render(request, 'blog.html',{'obj': obj, 'elt':dic})
 	except Exception:
-		return render(request, 'blog.html',{'obj': obj,})
+		
+		return render(request, 'blog.html',{'obj': obj, 'elt':dic})
 
 def about(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
 	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			return render(request, 'about.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			return render(request, 'about.html',{'obj': obj,})
+		try:
+			n=request.session['user_id']
+			if user_account.objects.filter(user_id=n).get():
+				b=1
+				h=0
+				return render(request, 'about.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'about.html',{'obj': obj,})
+		except Exception:
+			a=request.session['agent_id']
+			if agent_account.objects.filter(agent_id=a).get():
+				b=1
+				h=0
+				return render(request, 'about.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				return render(request, 'about.html',{'obj': obj,})
 	except Exception:
 		return render(request, 'about.html',{'obj': obj,})
+
 def property_detail(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
 	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			return render(request, 'property-details.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			return render(request, 'property-details.html',{'obj': obj,})
+		try:
+			n=request.session['user_id']
+			if user_account.objects.filter(user_id=n).get():
+				b=1
+				h=0
+				return render(request, 'property-details.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'property-details.html',{'obj': obj,})
+		except Exception:
+			a=request.session['agent_id']
+			if agent_account.objects.filter(agent_id=a).get():
+				b=1
+				h=0
+				return render(request, 'property-details.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				return render(request, 'property-details.html',{'obj': obj,})
 	except Exception:
-		return render(request, 'property-details.html',{'obj': obj,})
+		return render(request, 'property-details.html',{'obj': obj,'elt':allblogs()})
+
 	
 def contact(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
 	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			return render(request, 'contact.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			return render(request, 'contact.html',{'obj': obj,})
+		try:
+			n=request.session['user_id']
+			if user_account.objects.filter(user_id=n).get():
+				b=1
+				h=0
+				return render(request, 'contact.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'contact.html',{'obj': obj,})
+		except Exception:
+			a=request.session['agent_id']
+			if agent_account.objects.filter(agent_id=a).get():
+				b=1
+				h=0
+				return render(request, 'contact.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				return render(request, 'contact.html',{'obj': obj,})
 	except Exception:
 		return render(request, 'contact.html',{'obj': obj,})
+
 	
 def registration(request):
 
@@ -284,7 +346,6 @@ def agent_signup(request):
 		status=u
 		randomString = uuid.uuid4().hex
 		p= randomString.lower()[0:8]
-		print('ko')
 		if agent_account.objects.filter(email=e).exists():
 			message= 'User Already Exist'
 			return render(request,'registration.html',{'message':message})
@@ -488,20 +549,48 @@ def user_login(request):
 		p=request.POST.get('password')
 		ua = user_account.objects.filter(email=e)
 		if user_account.objects.filter(email=e, password=p).exists:
-			print('ho')
+			
 			for i in ua:
 				c=i.user_id
 				request.session['user_id']=c
 				b=1
-				print('lo')
+				
 				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
 			return render(request,"myaccount.html",{})
 		else:
-			print('helo')
+			
 			message='Please Enter valid details'
 			return render(request,'userlogin.html',{'message': message})
+@csrf_exempt
+def agent_login(request):
+	b=0
+	h=0
+	s='active'
+	e=request.POST.get('email')
+	p=request.POST.get('pass')
+	ua = agent_account.objects.filter(email=e)
+	if agent_account.objects.filter(email=e, password=p).exists():
+		if agent_account.objects.filter(status=s).exists():
+			for i in ua:
+				c=i.agent_id
+				request.session['agent_id']=c
+				b=1
+				break
+
+		else:
+			message='Your account is not activated'
+			return render(request,'login.html',{'message': message})
+
+		if request.session.has_key('agent_id') and b==1: 
+			h=1
+			dic=getagentinfo(request.session['agent_id'])
+			dic.update({'blogs':getblogs(request.session['agent_id'])})
+			return render(request, 'agentdesk.html', dic)
+	else:
+		message='Please Enter valid details'
+		return render(request,'login.html',{'message': message})
 
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
@@ -584,7 +673,6 @@ def send_mail_by_contact(request):
 
 		email = EmailMessage(subject, msg, to=['testm1214@gmail.com'])
 		email.send()
-		print('heloo')
 		return HttpResponse("<script> alert('Hello sir, your message has been sent. Will be processed within 24 hours !!'); window.location.replace('/contact/') </script>")
 
 def openmyaccount(request):
@@ -600,23 +688,38 @@ def Log(request):
 	h=0
 	obj=agent_account.objects.all()
 	try:
-		n=request.session['user_id']
-		del request.session['user_id']
-		request.session.flush()
-		if user_account.objects.filter(user_id=request.session['user_id']).get():
-			b=1
-			h=0
-			print('h')
-			return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
-		else:
-			b=1
-			print('g')
-			return render(request, 'index.html',{'obj': obj,})
+		try:
+			n=request.session['user_id']
+			del request.session['user_id']
+			request.session.flush()
+			if user_account.objects.filter(user_id=request.session['user_id']).get():
+				b=1
+				h=0
+				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'index.html',{'obj': obj,})
+		except Exception:
+			a=request.session['agent_id']
+			del request.session['agent_id']
+			request.session.flush()
+			if agent_account.objects.filter(agent_id=request.session['agent_id']).get():
+				b=1
+				h=0
+				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+			else:
+				b=1
+				return render(request, 'index.html',{'obj': obj,})
 	except Exception:
-		print('f')
 		return render(request, 'index.html',{'obj': obj,})
-	
 
+			
+	
+def agentblog(request):
+	agentid=request.session['agent_id']
+	dic=getagentinfo(agentid)
+	dic.update({'blogs':getblogs(agentid)})
+	return render(request, 'agentdesk.html', dic)
 	
  		
 
@@ -625,4 +728,45 @@ def openproperty(request):
 	pid=request.GET.get('pid')
 	dic=GetPropertyData(pid)
 	return render(request,'property-details.html',dic)
+@csrf_exempt
+def blog_page(request):
+	return render(request, 'enterblog.html',{})
 
+@csrf_exempt
+def post_blog(request):
+	if request.method=="POST":
+		n=request.POST.get('subject')
+		p=request.POST.get('pic')
+		m=request.POST.get('mess')
+		
+		u='U00'
+		x=1
+		uid=u+str(x)
+		while blog_table.objects.filter(blog_no=uid):
+			x=x+1
+			uid=u+str(x)
+		x=int(x)
+		try:
+			if agent_account.objects.filter(agent_id=request.session['agent_id']).get():
+				sv=blog_table(
+					agent_id=request.session['agent_id'],
+					blog_no=uid,
+					pic_of_pro=p,
+					subject=n,
+					Desc=m
+					)
+				sv.save()
+				return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/blog_page/') </script>")
+		except Exception:
+			
+			sv=blog_table(
+				agent_id='admin',
+				blog_no=uid,
+				pic_of_pro=p,
+				subject=n,
+				Desc=m
+				)
+			sv.save()
+			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
+
+		

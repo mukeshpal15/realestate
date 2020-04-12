@@ -43,7 +43,11 @@ urlpatterns = [
     path('openmyaccount/',openmyaccount),
     path('dele/',dele),
     path('openproperty/', openproperty),
-    path('openchangeaccountdetails/',openchangeaccountdetails)
+    path('openchangeaccountdetails/',openchangeaccountdetails),
+    path('agent_login/', agent_login),
+    path('agentblog/',agentblog),
+    path('blog_page/',blog_page),
+    path('post_blog/',post_blog),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

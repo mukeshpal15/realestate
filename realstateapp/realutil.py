@@ -124,3 +124,42 @@ def GetPropertyData(pid):
 			break
 	return dic
 
+def getagentinfo(agent_id):
+	dic={}
+	obj=agent_account.objects.filter(agent_id=agent_id)
+	for i in obj:
+		dic={
+			'name':i.name,
+			'email': i.email,
+			'address':i.address,
+			'city':i.city,
+			'phone': i.phone,
+			'pic': i.agentpic.url
+		}
+		break
+	return dic
+def getblogs(agent_id):
+	dic={}
+	lt=[]
+	lt2=[]
+	obj=blog.objects.filter(agent_id=agent_id)
+	for i in obj:
+		dic={
+		'blog_no': i.blog_no,
+		'pic_of_pro': i.pic_of_pro,
+		'date': i.date,
+		'subject': i.subject,
+		'Desc': i.Desc
+		}
+		lt.append(dic)
+	b=len(lt)-1
+	for x in range(b,-1,-1):
+		lt2.append(lt[x])
+	return lt2
+
+def allblogs():
+	lt=[]
+	obj=blog.objects.all()
+	lt.append(obj)
+	return lt
+
