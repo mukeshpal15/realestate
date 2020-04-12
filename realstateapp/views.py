@@ -549,18 +549,28 @@ def user_login(request):
 		p=request.POST.get('password')
 		ua = user_account.objects.filter(email=e)
 		if user_account.objects.filter(email=e, password=p).exists:
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
 			for i in ua:
 				c=i.user_id
 				request.session['user_id']=c
 				b=1
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
 				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
-			return render(request,"myaccount.html",{})
+			dic=GetUserData(e)
+			return render(request,"myaccount.html",dic)
 		else:
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
 			message='Please Enter valid details'
 			return render(request,'userlogin.html',{'message': message})
 @csrf_exempt
@@ -769,4 +779,9 @@ def post_blog(request):
 			sv.save()
 			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
 
+<<<<<<< HEAD
 		
+=======
+def openmyblogs(request):
+	return render(request,'myblogs.html',{})
+>>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f

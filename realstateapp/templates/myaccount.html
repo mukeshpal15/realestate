@@ -96,8 +96,12 @@
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
-              <h1 class=""><a href="\index\" class="h5 text-uppercase text-black"><strong>HomeSpace<span class="text-danger">.</span></strong></a></h1>
+<<<<<<< HEAD
+                          </div>
+=======
+              <h1><a href="\index\" class="h5 text-blue" style="font-size:25px;"><img src="{% static 'images/logo.png' %}" style="width:100px;"><strong> Shri Raj Property</strong></a></h1>
             </div>
+>>>>>>> eed5eeaab5791c6eeedbfd2c5bebc0a000befdb7
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
 
@@ -138,7 +142,7 @@
 
     <div class="pt-5" style="background-image:url({% static 'images/orangeback.jpg' %});">
       <center>
-      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;"> MY ACCOUNT </h1>
+      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;">MY ACCOUNT</h1>
       </center>
     </div>
     <div class="site-section site-section-sm bg-light">
@@ -146,7 +150,7 @@
         <div class="w3-panel w3-display-container"style="background-color:orange;box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:125px;width:100%;">
           <span onclick="this.parentElement.style.display='none'"
           class="w3-button w3-display-topright">X</span>
-          <h2 style="color:white;padding-top:25px;padding-left:10px;font-weight:bold;">Hi, User</h2>
+          <h2 style="color:white;padding-top:25px;padding-left:10px;font-weight:bold;">Hi, {{ name|safe }}</h2>
           <p style="color:white;font-size:30px;padding-bottom:25px;">Good to see you again!!</p>
         </div>
     <div style="padding-top:30px;" class="w3-bar">
@@ -171,13 +175,13 @@
         </DIV>
         <DIV class="columm">
           
-          <P style="margin-bottom:0px;margin-top:20px;font-size:22px;padding-left:45px;"><i class="fa fa-user"></i> : User Name Here</P>
+          <P style="margin-bottom:0px;margin-top:20px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-user"></i> : {{ name|safe }}</P>
 
-          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-envelope"></i> : email@example.com</P>
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-envelope"></i> : {{ email|safe }}</P>
 
-          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-map-marker"></i> : Address Here</P>
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-map-marker"></i> : {{ address|safe }}</P>
 
-          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;"><i class="fa fa-phone"></i> : Contact Here</P>
+          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-phone"></i> : {{ phone|safe }}</P>
 
           </div>
         </DIV>

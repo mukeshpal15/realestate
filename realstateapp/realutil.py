@@ -123,6 +123,7 @@ def GetPropertyData(pid):
 			dic.update({'image':y.Property_Image.url})
 			break
 	return dic
+<<<<<<< HEAD
 
 def getagentinfo(agent_id):
 	dic={}
@@ -163,3 +164,20 @@ def allblogs():
 	lt.append(obj)
 	return lt
 
+=======
+def GetUserData(email):
+	obj=user_account.objects.filter(email=email)
+	dic={}
+	for x in obj:
+		dic={
+			'userid':x.user_id,
+			'name':x.name,
+			'gender':x.gender,
+			'email':x.email,
+			'address':x.address,
+			'city':x.city,
+			'phone':x.phone
+		}
+		break
+	return dic
+>>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
