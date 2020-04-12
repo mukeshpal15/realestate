@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HomeSpace &mdash; MY ACCOUNT </title>
+    <title>HomeSpace &mdash; MY ORDERS </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'w3.css' %}">
@@ -107,7 +107,7 @@
                   <li>
                     <a href="\index\">Home</a>
                   </li>
-                  <li><a href="/openuserorder/">My Orders</a></li>
+                  <li><a href="/openuserorder/" class="active">My Orders</a></li>
                   <li><a class="w3-bar-item w3-button" style="background-color:orange;color:white;padding-right:10px;font-weight:bold;" href="\Log\">Logout</a></li>
                 </ul>
               </nav>
@@ -121,100 +121,37 @@
 
     <div class="pt-5" style="background-image:url({% static 'images/orangeback.jpg' %});">
       <center>
-      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;">MY ACCOUNT</h1>
+      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;">MY ORDERS</h1>
       </center>
     </div>
-    <div class="site-section site-section-sm bg-light">
-      <div class="container">
-        <div class="w3-panel w3-display-container"style="background-color:orange;box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:125px;width:100%;">
-          <span onclick="this.parentElement.style.display='none'"
-          class="w3-button w3-display-topright">X</span>
-          <h2 style="color:white;padding-top:25px;padding-left:10px;font-weight:bold;">Hi, {{ name|safe }}</h2>
-          <p style="color:white;font-size:30px;padding-bottom:25px;">Good to see you again!!</p>
-        </div>
-    <div style="padding-top:30px;" class="w3-bar">
-      <a class="w3-bar-item w3-button" style="color:white;font-size:20px; width:33.3%;background-color:black;" href="/openuserorder/">My Orders</a>
-      <button class="w3-bar-item w3-button " style="color:white;font-size:20px;width:33.3%;background-color:orange;">Buy Property</button>
-      <a class="w3-bar-item w3-button" href="/openchangeaccountdetails/" style="color:white;font-size:20px;width:33.3%;background-color:black;">Settings</a>
-    </div>
-    </div>
-    </div>
-    <div style="padding-top:0px;" class="site-section">
-      <div class="container">
-        
-        <CENTER>
-          <div class="site-section-title">
-            <h2>My Profile</h2>
-          </div>
-        </CENTER>
-       <DIV style="background-image:url({% static 'images/card.jpg' %});background-size:100% 100%;width:80%;padding-right:20px;margin:0 auto;" class="row w3-panel w3-card-4 w3-round-large">
-        <DIV class="columm"> 
-          <img style=" margin-left:20px;margin-bottom:20px;height:225px;width:190px;align:left;padding-left:0px;padding-top:20px;" class="w3-card-4" src="{% static 'images\profile.jpg' %}" alt="Person">
-          <div style="width:190px;margin-left:20px;margin-bottom:20px;bacground-color:orange;" onclick="openTab('b1');" class="w3-button w3-block w3-ripple w3-orange">Change Password</div>
-        </DIV>
-        <DIV class="columm">
-          
-          <P style="margin-bottom:0px;margin-top:20px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-user"></i> : {{ name|safe }}</P>
-
-          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-envelope"></i> : {{ email|safe }}</P>
-
-          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-map-marker"></i> : {{ address|safe }}</P>
-
-          <P style="margin-bottom:0px;margin-top:10px;font-size:22px;padding-left:45px;color:white;"><i class="fa fa-phone"></i> : {{ phone|safe }}</P>
-
-          </div>
-        </DIV>
-
-      </DIV>    
-    <div id="b1" class="containerTab w3-round-large" style="margin-bottom:20px;margin-right:50px;margin-left:50px;margin-top:50px;display:none;background-color:white;padding:0px 0px 0px 0px;" data-aos="fade-down">
-      <span onclick="this.parentElement.style.display='none'" class="closebtn" style="color:black;margin-right:20px;">x</span>
-      <div class="w3-card-4">
-
-        <div class="w3-container w3-orange">
-          <h2 style="font-weight:bold;">Change Password Here</h2>
-        </div>
-
-        <form class="w3-container" method="POST" action="/changeuserpassword/">
-          <div class="row">
-            
-            <div class="column">
-              <input class="w3-input" placeholder="Old Password" type="password" name="old">
-            </div>
-
-            <div class="column">
-              <input class="w3-input" placeholder="New Password" type="password" name="new">
-            </div>
-
-          </div>
-
-          <div class="row">
-            <input type="submit" style="margin-left:45px;margin-right:45px;width:100%;margin-bottom:20px;border-radius:10px;" value="Save" class="w3-button w3-block w3-ripple w3-black">
-          </div>
-        </form>
-
-        </div>
-    </div>
-        </div>
-        </div>
-        
-        
-        
-    <div class="site-section site-section-sm bg-primary">
+    <div class="site-section site-section-sm">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-8">
-            <h2 class="text-white">Wide Range of Properties Just For You</h2>
-            <p class="lead text-white-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <div class="col-md-4 text-center">
-            <a href="#" class="btn btn-outline-primary btn-block py-3 btn-lg">See Properties</a>
+          <table class="w3-table-all w3-hoverable" style="margin-bottom:50px;">
+              <tr class="w3-black">
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Property Name</th>
+                <th>Amount Paid</th>
+                <th>Transaction ID</th>
+                <th>Name of Payment Method</th>
+                <th>View Property Detail</th>
+              </tr>
+            
+              <tr>
+                <td>S2DFC</td>
+                <td>02/05/2020</td>
+                <td>Amar Vilas</td>
+                <td>Rs. 1000000/-</td>
+                <td>X1QF001</td>
+                <td>Debit Card</td>
+                <td><a href=""class="w3-button w3-block w3-ripple w3-orange" style="border-radius:20px;">Click Here</a></td>
+              </tr>
+              
+            </table>
           </div>
         </div>
       </div>
-    </div>
-
-    
-
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -307,7 +244,6 @@
     }
     document.getElementById(tabName).style.display = "block";
   }
-  </script>
-  {{ alert|safe }}   
+  </script>   
   </body>
 </html>

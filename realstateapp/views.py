@@ -29,10 +29,14 @@ def index(request):
 		if user_account.objects.filter(user_id=n).get():
 			b=1
 			h=0
-			return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+			dic={'obj':obj,'b':b, 'h':h}
+			dic.update({'cdata':GetPropertyCategoryData()})
+			return render(request, 'index.html',dic)
 		else:
 			b=1
-			return render(request, 'index.html',{'obj': obj,})
+			dic={'obj':obj}
+			dic.update({'cdata':GetPropertyCategoryData()})
+			return render(request, 'index.html',dic)
 	except Exception:
 		return render(request, 'index.html',{'obj': obj,})
 def properties(request):
@@ -430,7 +434,26 @@ def openmyaccount(request):
 	return render(request,"myaccount.html",{})
 
 def openchangeaccountdetails(request):
-	return render(request,"changeaccountdetails.html",{})
+	uid=request.session['user_id']
+	dic=GetUserData2(uid)
+	return render(request,"changeaccountdetails.html",dic)
+
+@csrf_exempt
+def savechangeaccountdetails(request):
+	if request.method=="POST":
+		uid=request.session['user_id']
+		obj=user_account.objects.filter(user_id=uid)
+		obj.update(address=request.POST.get('address'))
+		obj.update(city=request.POST.get('city'))
+		obj.update(phone=request.POST.get('phone'))
+		dic=GetUserData2(uid)
+		b1='''<script type="text/javascript">
+		alert("'''
+		b2='''");</script>'''
+		alert=b1+'Saved successfully'+b2
+		dic.update({'alert':alert})
+		return render(request,"myaccount.html",dic)
+
 
 def user_signup(request):
 	if request.method=="POST":
@@ -501,9 +524,6 @@ def user_login(request):
 			message='Please Enter valid details'
 			return render(request,'userlogin.html',{'message': message})
 
-def openmyaccount(request):
-	return render(request,"myaccount.html",{})
-
 @csrf_exempt
 def password_send_to_user(request):
 	if request.method=="POST":
@@ -570,7 +590,7 @@ def send_mail_by_contact(request):
 		e= request.POST.get('email')
 		s= request.POST.get('subject')
 		m= request.POST.get('message')
-		subject='mail from RealEstate'
+		subject='Mail from RealEstate'
 		msg= ''' Hello sir,
 
 	Someone contact you, 
@@ -626,3 +646,62 @@ def openproperty(request):
 
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
+
+def openuseraccount(request):
+	uid=request.session['user_id']
+	dic=GetUserData2(uid)	
+	return render(request,"myaccount.html",dic)
+
+@csrf_exempt
+def changeuserpassword(request):
+	if request.method=="POST":
+		uid=request.session['user_id']
+		op=request.POST.get('old')
+		np=request.POST.get('new')
+		obj=user_account.objects.filter(password=op,user_id=uid)
+		obj.update(password=np)
+		if user_account.objects.filter(password=np,user_id=uid).exists():
+			dic=GetUserData2(uid)
+			email=''
+			obj=user_account.objects.filter(user_id=uid)
+			for x in obj:
+				email=x.email
+				break
+			subject='Alert! : Your Account Password Has Changed'
+			msg= '''Hi there!
+Your account password has been change from '''+op+''' to '''+np+'''.
+If this was not you please report us.
+
+Thanks & Regards
+Shri Raj Property'''
+			e = EmailMessage(subject, msg, to=[email])
+			e.send()
+			b1='''<script type="text/javascript">
+			alert("'''
+			b2='''");</script>'''
+			alert=b1+'Password Changed Successfully'+b2
+			dic.update({'alert':alert})		
+			return render(request,"myaccount.html",dic)
+		else:
+			dic=GetUserData2(uid)
+			b1='''<script type="text/javascript">
+			alert("'''
+			b2='''");</script>'''
+			alert=b1+'Incorrect Password'+b2
+			dic.update({'alert':alert})
+			email=''
+			obj=user_account.objects.filter(user_id=uid)
+			for x in obj:
+				email=x.email
+				break
+			subject='Alert! : Someone tries to change your Pssword'
+			msg= '''Hi there!
+Someone tries to change your Pssword. Kindly login and change your password again.
+
+Thanks & Regards
+Shri Raj Property'''
+			e = EmailMessage(subject, msg, to=[email])
+			e.send()
+			return render(request,"myaccount.html",dic)
+def openuserorder(request):
+	return render(request,'myorders.html',{})

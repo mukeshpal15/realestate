@@ -138,3 +138,18 @@ def GetUserData(email):
 		}
 		break
 	return dic
+def GetUserData2(uid):
+	obj=user_account.objects.filter(user_id=uid)
+	dic={}
+	for x in obj:
+		dic={
+			'userid':x.user_id,
+			'name':x.name,
+			'gender':x.gender,
+			'email':x.email,
+			'address':x.address,
+			'city':x.city,
+			'phone':x.phone
+		}
+		break
+	return dic
