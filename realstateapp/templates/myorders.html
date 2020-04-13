@@ -2,14 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HomeSpace &mdash; {{ category|safe }}</title>
+    <title>HomeSpace &mdash; MY ORDERS </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'w3.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
@@ -27,7 +26,40 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
   </head>
-  <body>
+  <style type="text/css">
+  /* The grid: Three equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 50px;
+      text-align: center;
+      font-size: 25px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .containerTab {
+      padding: 20px;
+      color: white;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Closable button inside the image */
+    .closebtn {
+      float: right;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+  </style>
+
+  <body style="height:100%;background-size:100% 100%;background-image:url({% static 'images\myaccountbackground.jpg' %});">
   
   <div class="site-loader"></div>
   
@@ -66,8 +98,6 @@
             <div class="col-8 col-md-8 col-lg-4">
               <h1><a href="\index\" class="h5 text-blue" style="font-size:25px;"><img src="{% static 'images/logo.png' %}" style="width:100px;"><strong> Shri Raj Property</strong></a></h1>
             </div>
-          </div>
-        </div>
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
 
@@ -77,47 +107,9 @@
                   <li>
                     <a href="\index\">Home</a>
                   </li>
-                  <li class="has-children active">
-                    <a href="\properties\">Properties</a>
-                    <ul class="dropdown">
-                      <li><a href="#">Buy</a></li>
-                      <li><a href="#">Rent</a></li>
-                      <li><a href="#">Lease</a></li>
-                      <li class="has-children">
-                        <a href="#">Menu</a>
-                        <ul class="dropdown">
-                          <li><a href="#">Menu One</a></li>
-                          <li><a href="#">Menu Two</a></li>
-                          <li><a href="#">Menu Three</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a href="\blog\">Blog</a></li>
-                  <li><a href="\about\">About</a></li>
-                  {% if b == h %}
-                  <li class="has-children">
-                    <a href="#">Agents</a> 
-                    <ul class="dropdown">
-                      <li><a href="\registration\">Sign Up</a></li>
-                      <li><a href="\login\">Login</a></li>
-                    </ul>
-                  </li>
-                  <li class="has-children">
-                    <a href="#">Users</a>
-                    <ul class="dropdown">
-                      <li><a href="\userregistation\">Sign Up</a></li>
-                      <li><a href="\loginformuser\">Login</a></li>
-                    </ul>
-                      {% else %}
-                      <li class="has-children">
-                        <a href="" style="padding-right:20px;"><i class="fa fa-user" style="font-size:25px;"></i> Settings</a>
-                        <ul class="dropdown">
-                          <li><a href="/openuseraccount/">My Account</a></li>
-                          <li><a href="\Log\">Logout</a></li>
-                        </ul>
-                      </li>
-                  </li>{% endif %}
+                  <li><a href="/openuserorder/" class="active">My Orders</a></li>
+                  <li><a class="w3-bar-item w3-button" style="background-color:orange;color:white;padding-right:10px;font-weight:bold;" href="\Log\">Logout</a></li>
+                </ul>
               </nav>
             </div>
            
@@ -127,99 +119,39 @@
       </div>
     </div>
 
-    <div class="pt-5" style="background-color:orange  ;">
+    <div class="pt-5" style="background-image:url({% static 'images/orangeback.jpg' %});">
       <center>
-      <h1 style="color:white;font-weight:bold;padding-bottom:48px;">{{ category|safe }}</h1>
+      <h1 style="color:black;margin-left:700px;font-weight:bold;padding-bottom:48px;">MY ORDERS</h1>
       </center>
     </div>
-    <div class="site-section site-section-sm bg-light">
-      <div class="container">
-        <div class="row mb-5">
-          {% for x in cdata %}
-          <a href="/openproperty/?pid={{ x.id|safe }}">
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="prop-entry d-block">
-                <figure>
-                  <img style="height:250px;" src="{{ x.image|safe }}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="prop-text">
-                  <div class="inner">
-                    <a href="/openproperty/?pid={{ x.id|safe }}" class="price rounded">Rs. {{ x.price|safe }}/-</a>
-                    <h3 class="title">{{ x.name|safe }}</h3>
-                    <p class="location">{{ x.address|safe }}</p>
-                  </div>
-                  <div class="prop-more-info">
-                    <div class="inner d-flex">
-                      <div class="col">
-                        <span>Area:</span>
-                        <strong>{{ x.area|safe }} sq.ft.</sup></strong>
-                      </div>
-                      <div class="col">
-                        <span>Beds:</span>
-                        <strong>{{ x.beds|safe }}</strong>
-                      </div>
-                      <div class="col">
-                        <span>Baths:</span>
-                        <strong>{{ x.baths|safe }}</strong>
-                      </div>
-                      <div class="col">
-                        <span>Garages:</span>
-                        <strong>{{ x.garages|safe }}</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          {% endfor %}
-        </div>
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <div class="site-pagination">
-          {% if cdata.has_other_pages %}
-            {% if cdata.has_previous %}
-            <a href="/propertypaginator/?page={{ cdata.previous_page_number }}">&laquo;</a>
-            {% else %}
-            <span>&laquo;</span>
-          {% endif %}
-          {% for i in cdata.paginator.page_range %}
-            {% if cdata.number == i %}
-              <a class="active">{{ i }}</a>
-            {% else %}
-              <a href="/propertypaginator/?page={{ i }}">{{ i }}</a>
-            {% endif %}
-          {% endfor %}
-          {% if cdata.has_next %}
-            <a href="/propertypaginator/?page={{ cdata.next_page_number }}">&raquo;</a>
-          {% else %}
-            <span>&raquo;</span>
-          {% endif %}
-        </ul>
-      {% endif %}
-    </div>
-   </div>  
-  </div>
-
-      </div>
-    </div>
-
-    <div class="site-section site-section-sm bg-primary">
+    <div class="site-section site-section-sm">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-8">
-            <h2 class="text-white">Wide Range of Properties Just For You</h2>
-            <p class="lead text-white-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <div class="col-md-4 text-center">
-            <a href="#" class="btn btn-outline-primary btn-block py-3 btn-lg">See Properties</a>
+          <table class="w3-table-all w3-hoverable" style="margin-bottom:50px;">
+              <tr class="w3-black">
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Property Name</th>
+                <th>Amount Paid</th>
+                <th>Transaction ID</th>
+                <th>Name of Payment Method</th>
+                <th>View Property Detail</th>
+              </tr>
+            
+              <tr>
+                <td>S2DFC</td>
+                <td>02/05/2020</td>
+                <td>Amar Vilas</td>
+                <td>Rs. 1000000/-</td>
+                <td>X1QF001</td>
+                <td>Debit Card</td>
+                <td><a href=""class="w3-button w3-block w3-ripple w3-orange" style="border-radius:20px;">Click Here</a></td>
+              </tr>
+              
+            </table>
           </div>
         </div>
       </div>
-    </div>
-    
-
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -302,6 +234,16 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
-    
+ <script type="text/javascript">
+  // Hide all elements with class="containerTab", except for the one that matches the clickable grid column
+  function openTab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  }
+  </script>   
   </body>
 </html>

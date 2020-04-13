@@ -40,12 +40,19 @@ urlpatterns = [
     path('password_send_to_user/', password_send_to_user),
     path('send_mail_by_contact/', send_mail_by_contact),
     path('Log/', Log),
-    path('openmyaccount/',openmyaccount),
+    path('openuseraccount/',openuseraccount),
     path('dele/',dele),
     path('openproperty/', openproperty),
     path('openchangeaccountdetails/',openchangeaccountdetails),
+    path('agent_login/', agent_login),
+    path('agentblog/',agentblog),
+    path('blog_page/',blog_page),
+    path('post_blog/',post_blog),
     path('openmyblogs/',openmyblogs),
     path('openchangeaccountdetails/',openchangeaccountdetails),
+    path('savechangeaccountdetails/',savechangeaccountdetails),
+    path('changeuserpassword/',changeuserpassword),
+    path('openuserorder/',openuserorder),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

@@ -1,5 +1,7 @@
 from django.db import models
-
+from datetime import date
+from django.conf import settings
+TIME_FORMAT = '%d.%m.%Y'
 class PropertyCategoryData(models.Model):
 	Category_ID=models.CharField(max_length=100)
 	Category_Name=models.CharField(max_length=50)
@@ -63,4 +65,16 @@ class myaccount(models.Model):
 	pic = models.ImageField(upload_to='pic')
 	class Meta:
 		db_table="myaccount"
+
+class blog_table(models.Model):
+	agent_id = models.CharField(max_length=20)
+	blog_no = models.CharField(max_length=50)
+	pic_of_pro =models.ImageField(upload_to='blog_pic')
+	date = models.DateField(auto_now=True)
+	subject = models.CharField(max_length=60)
+	Desc = models.CharField(max_length=200)
+	class Meta:
+		db_table="blog_table"
+			
+		
 			
