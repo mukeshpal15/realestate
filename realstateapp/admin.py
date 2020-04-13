@@ -5,3 +5,5 @@ from .models import *
 
 admin.site.register(myaccount)
 admin.site.register(user_account)
+admin.site.register(agent_account)
+admin.site.register(blog_table)

@@ -417,7 +417,7 @@
     </div>
 
     
-  <div class="site-section">
+  <div class="site-section" style="margin-top:0px;padding-top:0px;">
     <div class="container">
       <div class="row mb-5 justify-content-center">
         <div class="col-md-7">
@@ -429,18 +429,16 @@
       <div class="row block-13">
 
         <div class="nonloop-block-13 owl-carousel">
-{% for i in obj %}
+        {% for i in obj %}
           <div class="slide-item">
-          
             <div class="team-member text-center">
-            
               <img src="{{i.agentpic.url}}" alt="Image" class="img-fluid mb-4 w-50 rounded-circle mx-auto">
               <div class="text p-3">
                 <h2 class="mb-2 font-weight-light text-black h4">{{i.name}}</h2>
                 <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
-                <p class="mb-5">{{i.email}} </p>
-                <p class="mb-5">{{i.phone}} </p>
                 <p>
+                  <a href="mail://{{i.email}}" class="text-black p-2"><span class="fa fa-at"></span></a>
+                  <a href="tel://{{i.phone}}" class="text-black p-2"><span class="fa fa-phone"></span></a>
                   <a href="{{i.facebook}}" class="text-black p-2"><span class="icon-facebook"></span></a>
                   <a href="{{i.twitter}}" class="text-black p-2"><span class="icon-twitter"></span></a>
                   <a href="{{i.linkedin}}" class="text-black p-2"><span class="icon-linkedin"></span></a>
@@ -448,8 +446,7 @@
               </div>
             </div>
           </div>
-
-  {% endfor %}       
+        {% endfor %}       
           </div>
         </div>
       </div>
