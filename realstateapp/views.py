@@ -43,19 +43,29 @@ def index(request):
 			if user_account.objects.filter(user_id=n).get():
 				b=1
 				h=0
-				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+				dic={'obj': obj, 'b':b, 'h':h}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
 			else:
 				b=1
-				return render(request, 'index.html',{'obj': obj,})
+				dic={'obj': obj}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
 		except:
 			a=request.session['agent_id']
 			if agent_account.objects.filter(agent_id=a).get():
 				b=1
 				h=0
-				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+				dic={'obj': obj, 'b':b, 'h':h}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
 			else:
-				return render(request, 'index.html',{'obj': obj,})
+				dic={'obj': obj}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
 	except Exception:
+		dic={'obj': obj}
+		dic.update({'cdata':GetPropertyCategoryData()})
 		return render(request, 'index.html',{'obj': obj,})
 
 		
@@ -219,11 +229,15 @@ def adminlogincheck(request):
 			return render(request, 'adminlogin.html', {'alert':alert})
 @csrf_exempt
 def agentdata(request):
-	s='active'
-	u= 'not active'
-	agent=agent_account.objects.filter(status=s)
-	notagent=agent_account.objects.filter(status=u)
-	return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+	if request.method=="POST":
+		s='active'
+		u= 'not active'
+		agent=agent_account.objects.filter(status=s)
+		notagent=agent_account.objects.filter(status=u)
+		return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+	else:
+		return redirect('/error/')
+
 @csrf_exempt
 def make_active_agent(request):
 	if request.method=="POST":
@@ -485,6 +499,7 @@ def openpropertycategory(request):
 			cdata = paginator.page(paginator.num_pages)
 		dic={'cdata':cdata,
 			'category':category}
+		dic.update({'catedata':GetPropertyCategoryData()})
 		return render(request,"propertycategories.html",dic)
 def propertypaginator(request):
 	page = request.GET.get('page')
@@ -498,6 +513,7 @@ def propertypaginator(request):
 		cdata = paginator.page(paginator.num_pages)
 	dic={'cdata':cdata,
 		'category':request.session['cname']}
+	dic.update({'catedata':GetPropertyCategoryData()})
 	return render(request,"propertycategories.html",dic)
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
@@ -753,7 +769,7 @@ def agentblog(request):
 def openproperty(request):
 	pid=request.GET.get('pid')
 	dic=GetPropertyData(pid)
-	
+	dic.update({'catedata':GetPropertyCategoryData()})
 	return render(request,'property-details.html',dic)
 @csrf_exempt
 def blog_page(request):
