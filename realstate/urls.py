@@ -44,16 +44,15 @@ urlpatterns = [
     path('dele/',dele),
     path('openproperty/', openproperty),
     path('openchangeaccountdetails/',openchangeaccountdetails),
-<<<<<<< HEAD
     path('agent_login/', agent_login),
     path('agentblog/',agentblog),
     path('blog_page/',blog_page),
     path('post_blog/',post_blog),
 
-=======
+
     path('openmyblogs/',openmyblogs),
     path('openchangeaccountdetails/',openchangeaccountdetails),
->>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

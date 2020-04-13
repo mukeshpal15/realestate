@@ -4,7 +4,7 @@ from django.conf import  settings
 from realstateapp.models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from realstateapp.form import *
+#from realstateapp.form import *
 from .models import * 
 from django.contrib.auth import logout
 from django.core.mail import EmailMessage
@@ -24,6 +24,8 @@ def index(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
+	dic=allblogs()[0:3]
+
 	try:
 
 		try:	
@@ -31,20 +33,20 @@ def index(request):
 			if user_account.objects.filter(user_id=n).get():
 				b=1
 				h=0
-				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				b=1
-				return render(request, 'index.html',{'obj': obj,})
+				return render(request, 'index.html',{'obj': obj, 'elt':dic})
 		except:
 			a=request.session['agent_id']
 			if agent_account.objects.filter(agent_id=a).get():
 				b=1
 				h=0
-				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h})
+				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
-				return render(request, 'index.html',{'obj': obj,})
+				return render(request, 'index.html',{'obj': obj,'elt':dic})
 	except Exception:
-		return render(request, 'index.html',{'obj': obj,})
+		return render(request, 'index.html',{'obj': obj, 'elt':dic})
 
 		
 	
@@ -77,7 +79,7 @@ def blog(request):
 	b=0
 	h=0
 	obj=agent_account.objects.all()
-	dic=blog_table.objects.all()
+	dic=allblogs()
 	try:	
 		try:
 			n=request.session['user_id']
@@ -327,7 +329,7 @@ def saveproperty(request):
 		return render(request, 'adminpannel.html', {'alert':alert,'pdata':GetAllPropertyData()})
 	else:
 		return redirect('/error/')
-
+@csrf_exempt
 def agent_signup(request):
 	if request.method=="POST":
 		
@@ -341,7 +343,7 @@ def agent_signup(request):
 		fb=request.POST.get('facebook')
 		tw=request.POST.get('twitter')
 		LI=request.POST.get('linkedin')
-		m='agentpic\image.png'
+		m=request.FILES['pic']
 		u= 'not active'
 		status=u
 		randomString = uuid.uuid4().hex
@@ -363,14 +365,14 @@ def agent_signup(request):
 				uid=u+str(x)
 			x=int(x)
 			try:
-				subject='mail from RealEstate'
+				subject='Mail From Shri Raj Property'
 				msg= ''' Hello sir,
 
 		You are successfully registered, but your account is not active
 		please wait for the owner response 
 
 		Thanks & Regards
-		Real Estate''' 
+		Shri Raj Property''' 
 				
 
 				email = EmailMessage(subject, msg, to=[e])
@@ -384,7 +386,7 @@ def agent_signup(request):
 				'''+"Name :" +n+('\n')+"Gender :" +g+('\n')+"Mail ID :"+e+('\n')+"Phone no. :"+ph+('\n')+"Address :"+ad+('\n')+"City :"+c+('\n')+"Aadhar card no. :" +aa+"Facebook link :"+fb+('\n')+"linkedIn link :"+LI+('\n')+"Twitter link. :"+tw +'''
 
 				Thanks & Regards
-				Real Estate''' 
+				Shri Raj Property''' 
 
 
 			
@@ -409,13 +411,13 @@ def agent_signup(request):
 					message='You are successfully registered.'	
 					return render(request,'registration.html', {'message':message})
 				except Exception:
-					message='Fill The form again'	
+					message='Fill The Form Again'	
 					return render(request,'registration.html', {'message':message})
 			except Exception:
-				message=' enter valid mail address'
+				message=' Enter Valid Mail Address'
 				return render(request,'registration.html', {'message':message})
 	else:
-		message=' enter valid mail address'
+		message=' Enter Valid Mail Address'
 		return render(request,'registration.html', {'message':message})
 
 def dele(request):
@@ -521,14 +523,14 @@ def user_signup(request):
 				uid=u+str(x)
 			x=int(x)
 			try:
-				subject='mail from RealEstate'
+				subject='Mail From Shri Raj Property'
 				msg= ''' Hello sir,
 
 		You are successfully registered, 
 		your password is :'''+p+''' 
 
 		Thanks & Regards
-		Real Estate''' 
+		Shri Raj Property''' 
 				
 
 				email = EmailMessage(subject, msg, to=[e])
@@ -538,7 +540,7 @@ def user_signup(request):
 				message='You are successfully registered. password is send to your given mail account'	
 				return render(request,'userregistation.html', {'message':message})
 			except Exception:
-				message=' enter valid mail address'
+				message='Enter Valid Mail Address'
 				return render(request,'userregistation.html', {'message':message})
 @csrf_exempt
 def user_login(request):
@@ -549,29 +551,20 @@ def user_login(request):
 		p=request.POST.get('password')
 		ua = user_account.objects.filter(email=e)
 		if user_account.objects.filter(email=e, password=p).exists:
-<<<<<<< HEAD
-			
-=======
->>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
+
 			for i in ua:
 				c=i.user_id
 				request.session['user_id']=c
 				b=1
-<<<<<<< HEAD
-				
-=======
->>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
+
 				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
 			dic=GetUserData(e)
 			return render(request,"myaccount.html",dic)
 		else:
-<<<<<<< HEAD
-			
-=======
->>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
-			message='Please Enter valid details'
+
+			message='Please Enter Valid Details'
 			return render(request,'userlogin.html',{'message': message})
 @csrf_exempt
 def agent_login(request):
@@ -616,14 +609,14 @@ def password_send_to_user(request):
 			for i in u:
 				i.password=p
 				break
-			subject='mail from RealEstate'
+			subject='Mail From Shri Raj Property'
 			msg= ''' Hello sir,
 
 			Your passwaord has been changed, 
 			your password is :'''+p+''' 
 
 			Thanks & Regards
-			Real Estate''' 
+			Shri Raj Property''' 
 					
 			try:
 				email = EmailMessage(subject, msg, to=[e])
@@ -646,14 +639,14 @@ def password_send_to_agent(request):
 			for i in u:
 				i.password=p
 				break
-			subject='mail from RealEstate'
+			subject='Mail From Shri Raj Property'
 			msg= ''' Hello sir,
 
 			Your passwaord has been changed, 
 			your password is :'''+p+''' 
 
 			Thanks & Regards
-			Real Estate''' 
+			Shri Raj Property''' 
 					
 			try:
 				email = EmailMessage(subject, msg, to=[e])
@@ -671,7 +664,7 @@ def send_mail_by_contact(request):
 		e= request.POST.get('email')
 		s= request.POST.get('subject')
 		m= request.POST.get('message')
-		subject='mail from RealEstate'
+		subject='Mail From Shri Raj Property'
 		msg= ''' Hello sir,
 
 	Someone contact you, 
@@ -679,7 +672,7 @@ def send_mail_by_contact(request):
 '''+"Name :" +n+('\n')+"Mail ID :"+e+('\n')+"Subject :"+s+('\n')+"Message :"+m+'''
 
 	Thanks & Regards
-	Real Estate''' 
+	Shri Raj Property''' 
 
 		email = EmailMessage(subject, msg, to=['testm1214@gmail.com'])
 		email.send()
@@ -746,9 +739,8 @@ def blog_page(request):
 def post_blog(request):
 	if request.method=="POST":
 		n=request.POST.get('subject')
-		p=request.POST.get('pic')
+		p=request.FILES['pic']
 		m=request.POST.get('mess')
-		
 		u='U00'
 		x=1
 		uid=u+str(x)
@@ -768,6 +760,12 @@ def post_blog(request):
 				sv.save()
 				return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/blog_page/') </script>")
 		except Exception:
+			obj=PropertyCategoryData.objects.all()
+			lt=[]
+			for x in obj:
+				lt.append(x.Category_Name)
+			dic={'category':lt,
+			'pdata':GetAllPropertyData()}
 			
 			sv=blog_table(
 				agent_id='admin',
@@ -777,11 +775,8 @@ def post_blog(request):
 				Desc=m
 				)
 			sv.save()
-			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
+			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/blog_page/') </script>")
 
-<<<<<<< HEAD
-		
-=======
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
->>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
+

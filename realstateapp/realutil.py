@@ -123,7 +123,7 @@ def GetPropertyData(pid):
 			dic.update({'image':y.Property_Image.url})
 			break
 	return dic
-<<<<<<< HEAD
+
 
 def getagentinfo(agent_id):
 	dic={}
@@ -143,7 +143,7 @@ def getblogs(agent_id):
 	dic={}
 	lt=[]
 	lt2=[]
-	obj=blog.objects.filter(agent_id=agent_id)
+	obj=blog_table.objects.filter(agent_id=agent_id)
 	for i in obj:
 		dic={
 		'blog_no': i.blog_no,
@@ -159,12 +159,25 @@ def getblogs(agent_id):
 	return lt2
 
 def allblogs():
+	dic={}
 	lt=[]
-	obj=blog.objects.all()
-	lt.append(obj)
-	return lt
+	lt2=[]
+	obj=blog_table.objects.all()
+	for i in obj:
+		dic={
+		'blog_no': i.blog_no,
+		'pic_of_pro': i.pic_of_pro.url,
+		'date': i.date,
+		'subject': i.subject,
+		'Desc': i.Desc
+		}
+		lt.append(dic)
+	b=len(lt)-1
+	for x in range(b,-1,-1):
+		lt2.append(lt[x])
+	return lt2
+	
 
-=======
 def GetUserData(email):
 	obj=user_account.objects.filter(email=email)
 	dic={}
@@ -180,4 +193,4 @@ def GetUserData(email):
 		}
 		break
 	return dic
->>>>>>> 3cc3f6753427fda6be0439a6dace69fc27fad44f
+
