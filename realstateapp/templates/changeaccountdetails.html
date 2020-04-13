@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<<<<<<< HEAD
     <title> Shri Raj Property &mdash; MY ACCOUNT </title>
+=======
+    <title>shri Raj Propert &mdash; Change Account Detail </title>
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'w3.css' %}">
@@ -149,35 +153,27 @@
             <h2>Change Details</h2>
           </div>
         </CENTER>
-      <form action="" method="POST">
+      <form action="/savechangeaccountdetails/" method="POST">
        <DIV style="background-color:white;background-size:100% 100%;width:80%;padding-right:20px;margin:0 auto;" class="row w3-panel w3-card-4 w3-round-large">
         <DIV class="columm"> 
           <img style="margin-left:20px;margin-bottom:20px;height:225px;width:190px;align:left;padding-left:0px;margin-top:20px;" class="w3-card" src="{% static 'images\profile.jpg' %}" alt="Person">
-          <p style=" width:190px;margin-left:20px;margin-bottom:20px;bacground-color:orange;" class="w3-button w3-block w3-ripple w3-orange">Change Profile Picture</p>
-          <input type="file" name="image" accept="image/*" style=" width:190px;margin-left:20px;margin-bottom:20px;bacground-color:orange;" >
         </DIV>
         <DIV class="columm">
           
           <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-user">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="Username Here" type="text" disabled></i>
+          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="{{ name|safe }}" type="text" disabled></i>
 
           <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-at">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="User Email Here" type="email" disabled></i><br>
+          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="{{ email|safe }}" type="email" disabled></i><br>
 
           <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-map-marker">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="User Address Here" type="text"></i>
+          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="{{ address|safe }}" name="address" type="text"></i>
+
+          <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-plane">
+          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="{{ city|safe }}" name="city" type="text"></i><br>
 
           <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-phone">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="User Contact Here" type="text"></i><br>
-
-          <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-university">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="User Account Number Here" type="text"></i>
-
-          <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-file-code-o">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="Account IFSC Code Here" type="text"></i><br>
-
-          <i style="margin-bottom:0px;margin-top:20px;font-size:20px;padding-left:45px;" class="fa fa-credit-card-alt">
-          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="User Bank Name" type="text"></i>
+          <input class="w3-input" style="font-family:Arial;margin-top:5px;" value="{{ phone|safe }}" name="phone" type="text"></i><br>
 
           <input type="submit" style="margin-left:45px;width:100;margin-bottom:20px;margin-top:20px;border-radius:10px;" value="Save" class="w3-button w3-block w3-ripple w3-black">
 
@@ -303,6 +299,7 @@
     }
     document.getElementById(tabName).style.display = "block";
   }
-  </script>   
+  </script>
+  {{ alert|safe }}   
   </body>
 </html>

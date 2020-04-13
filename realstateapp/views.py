@@ -27,26 +27,63 @@ def index(request):
 	dic=allblogs()[0:3]
 
 	try:
+		n=request.session['user_id']
+		if user_account.objects.filter(user_id=n).get():
+			b=1
+			h=0
+			dic={'obj':obj,'b':b, 'h':h}
+			dic.update({'cdata':GetPropertyCategoryData()})
+			return render(request, 'index.html',dic)
+		else:
+			b=1
+			dic={'obj':obj}
+			dic.update({'cdata':GetPropertyCategoryData()})
+			return render(request, 'index.html',dic)
 
 		try:	
 			n=request.session['user_id']
 			if user_account.objects.filter(user_id=n).get():
 				b=1
 				h=0
+<<<<<<< HEAD
 				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				b=1
 				return render(request, 'index.html',{'obj': obj, 'elt':dic})
+=======
+				dic={'obj': obj, 'b':b, 'h':h}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
+			else:
+				b=1
+				dic={'obj': obj}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 		except:
 			a=request.session['agent_id']
 			if agent_account.objects.filter(agent_id=a).get():
 				b=1
 				h=0
+<<<<<<< HEAD
 				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				return render(request, 'index.html',{'obj': obj,'elt':dic})
 	except Exception:
 		return render(request, 'index.html',{'obj': obj, 'elt':dic})
+=======
+				dic={'obj': obj, 'b':b, 'h':h}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
+			else:
+				dic={'obj': obj}
+				dic.update({'cdata':GetPropertyCategoryData()})
+				return render(request, 'index.html',dic)
+	except Exception:
+		dic={'obj': obj}
+		dic.update({'cdata':GetPropertyCategoryData()})
+		return render(request, 'index.html',{'obj': obj,})
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 
 		
 	
@@ -209,11 +246,15 @@ def adminlogincheck(request):
 			return render(request, 'adminlogin.html', {'alert':alert})
 @csrf_exempt
 def agentdata(request):
-	s='active'
-	u= 'not active'
-	agent=agent_account.objects.filter(status=s)
-	notagent=agent_account.objects.filter(status=u)
-	return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+	if request.method=="POST":
+		s='active'
+		u= 'not active'
+		agent=agent_account.objects.filter(status=s)
+		notagent=agent_account.objects.filter(status=u)
+		return render(request, 'agentsdata.html', {'active': agent, 'deactive': notagent})
+	else:
+		return redirect('/error/')
+
 @csrf_exempt
 def make_active_agent(request):
 	if request.method=="POST":
@@ -475,6 +516,7 @@ def openpropertycategory(request):
 			cdata = paginator.page(paginator.num_pages)
 		dic={'cdata':cdata,
 			'category':category}
+		dic.update({'catedata':GetPropertyCategoryData()})
 		return render(request,"propertycategories.html",dic)
 def propertypaginator(request):
 	page = request.GET.get('page')
@@ -488,12 +530,32 @@ def propertypaginator(request):
 		cdata = paginator.page(paginator.num_pages)
 	dic={'cdata':cdata,
 		'category':request.session['cname']}
+	dic.update({'catedata':GetPropertyCategoryData()})
 	return render(request,"propertycategories.html",dic)
 def openmyaccount(request):
 	return render(request,"myaccount.html",{})
 
 def openchangeaccountdetails(request):
-	return render(request,"changeaccountdetails.html",{})
+	uid=request.session['user_id']
+	dic=GetUserData2(uid)
+	return render(request,"changeaccountdetails.html",dic)
+
+@csrf_exempt
+def savechangeaccountdetails(request):
+	if request.method=="POST":
+		uid=request.session['user_id']
+		obj=user_account.objects.filter(user_id=uid)
+		obj.update(address=request.POST.get('address'))
+		obj.update(city=request.POST.get('city'))
+		obj.update(phone=request.POST.get('phone'))
+		dic=GetUserData2(uid)
+		b1='''<script type="text/javascript">
+		alert("'''
+		b2='''");</script>'''
+		alert=b1+'Saved successfully'+b2
+		dic.update({'alert':alert})
+		return render(request,"myaccount.html",dic)
+
 
 def user_signup(request):
 	if request.method=="POST":
@@ -551,20 +613,30 @@ def user_login(request):
 		p=request.POST.get('password')
 		ua = user_account.objects.filter(email=e)
 		if user_account.objects.filter(email=e, password=p).exists:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 			for i in ua:
 				c=i.user_id
 				request.session['user_id']=c
 				b=1
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
 			dic=GetUserData(e)
 			return render(request,"myaccount.html",dic)
 		else:
+<<<<<<< HEAD
 
 			message='Please Enter Valid Details'
+=======
+			message='Please Enter valid details'
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 			return render(request,'userlogin.html',{'message': message})
 @csrf_exempt
 def agent_login(request):
@@ -594,9 +666,6 @@ def agent_login(request):
 	else:
 		message='Please Enter valid details'
 		return render(request,'login.html',{'message': message})
-
-def openmyaccount(request):
-	return render(request,"myaccount.html",{})
 
 @csrf_exempt
 def password_send_to_user(request):
@@ -664,7 +733,11 @@ def send_mail_by_contact(request):
 		e= request.POST.get('email')
 		s= request.POST.get('subject')
 		m= request.POST.get('message')
+<<<<<<< HEAD
 		subject='Mail From Shri Raj Property'
+=======
+		subject='Mail from RealEstate'
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 		msg= ''' Hello sir,
 
 	Someone contact you, 
@@ -730,6 +803,7 @@ def agentblog(request):
 def openproperty(request):
 	pid=request.GET.get('pid')
 	dic=GetPropertyData(pid)
+	dic.update({'catedata':GetPropertyCategoryData()})
 	return render(request,'property-details.html',dic)
 @csrf_exempt
 def blog_page(request):
@@ -775,8 +849,73 @@ def post_blog(request):
 				Desc=m
 				)
 			sv.save()
+<<<<<<< HEAD
 			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/blog_page/') </script>")
 
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
 
+=======
+			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
+def openmyblogs(request):
+	return render(request,'myblogs.html',{})
+
+def openuseraccount(request):
+	uid=request.session['user_id']
+	dic=GetUserData2(uid)	
+	return render(request,"myaccount.html",dic)
+
+@csrf_exempt
+def changeuserpassword(request):
+	if request.method=="POST":
+		uid=request.session['user_id']
+		op=request.POST.get('old')
+		np=request.POST.get('new')
+		obj=user_account.objects.filter(password=op,user_id=uid)
+		obj.update(password=np)
+		if user_account.objects.filter(password=np,user_id=uid).exists():
+			dic=GetUserData2(uid)
+			email=''
+			obj=user_account.objects.filter(user_id=uid)
+			for x in obj:
+				email=x.email
+				break
+			subject='Alert! : Your Account Password Has Changed'
+			msg= '''Hi there!
+Your account password has been change from '''+op+''' to '''+np+'''.
+If this was not you please report us.
+
+Thanks & Regards
+Shri Raj Property'''
+			e = EmailMessage(subject, msg, to=[email])
+			e.send()
+			b1='''<script type="text/javascript">
+			alert("'''
+			b2='''");</script>'''
+			alert=b1+'Password Changed Successfully'+b2
+			dic.update({'alert':alert})		
+			return render(request,"myaccount.html",dic)
+		else:
+			dic=GetUserData2(uid)
+			b1='''<script type="text/javascript">
+			alert("'''
+			b2='''");</script>'''
+			alert=b1+'Incorrect Password'+b2
+			dic.update({'alert':alert})
+			email=''
+			obj=user_account.objects.filter(user_id=uid)
+			for x in obj:
+				email=x.email
+				break
+			subject='Alert! : Someone tries to change your Pssword'
+			msg= '''Hi there!
+Someone tries to change your Pssword. Kindly login and change your password again.
+
+Thanks & Regards
+Shri Raj Property'''
+			e = EmailMessage(subject, msg, to=[email])
+			e.send()
+			return render(request,"myaccount.html",dic)
+def openuserorder(request):
+	return render(request,'myorders.html',{})
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa

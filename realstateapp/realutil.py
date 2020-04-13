@@ -119,11 +119,18 @@ def GetPropertyData(pid):
 		'pricepersqft':str(float(x.Property_Price)/float(x.Property_Area))
 		}
 		obj1=PropertyImagesData.objects.filter(Property_ID=x.Property_ID)
+		lt=[]
 		for y in obj1:
-			dic.update({'image':y.Property_Image.url})
+			lt.append(y.Property_Image.url)
+		dic.update({'image':lt})
+		for y in obj1:
+			dic.update({'coverimage':y.Property_Image.url})
 			break
 	return dic
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 
 def getagentinfo(agent_id):
 	dic={}
@@ -193,4 +200,22 @@ def GetUserData(email):
 		}
 		break
 	return dic
+<<<<<<< HEAD
 
+=======
+def GetUserData2(uid):
+	obj=user_account.objects.filter(user_id=uid)
+	dic={}
+	for x in obj:
+		dic={
+			'userid':x.user_id,
+			'name':x.name,
+			'gender':x.gender,
+			'email':x.email,
+			'address':x.address,
+			'city':x.city,
+			'phone':x.phone
+		}
+		break
+	return dic
+>>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
