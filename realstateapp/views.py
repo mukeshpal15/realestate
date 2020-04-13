@@ -27,53 +27,31 @@ def index(request):
 	dic=allblogs()[0:3]
 
 	try:
-		n=request.session['user_id']
-		if user_account.objects.filter(user_id=n).get():
-			b=1
-			h=0
-			dic={'obj':obj,'b':b, 'h':h}
-			dic.update({'cdata':GetPropertyCategoryData()})
-			return render(request, 'index.html',dic)
-		else:
-			b=1
-			dic={'obj':obj}
-			dic.update({'cdata':GetPropertyCategoryData()})
-			return render(request, 'index.html',dic)
-
 		try:	
 			n=request.session['user_id']
 			if user_account.objects.filter(user_id=n).get():
 				b=1
 				h=0
+				dic={'obj':obj,'b':b, 'h':h}
+				dic.update({'cdata':GetPropertyCategoryData()})
 				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				b=1
-				return render(request, 'index.html',{'obj': obj, 'elt':dic})
 				dic={'obj': obj, 'b':b, 'h':h}
 				dic.update({'cdata':GetPropertyCategoryData()})
 				return render(request, 'index.html',dic)
-			else:
-				b=1
-				dic={'obj': obj}
-				dic.update({'cdata':GetPropertyCategoryData()})
-				return render(request, 'index.html',dic)
+			
 		except:
 			a=request.session['agent_id']
 			if agent_account.objects.filter(agent_id=a).get():
 				b=1
 				h=0
+				dic={'obj':obj,'b':b, 'h':h}
+				dic.update({'cdata':GetPropertyCategoryData()})
 				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				return render(request, 'index.html',{'obj': obj,'elt':dic})
-	except Exception:
-		return render(request, 'index.html',{'obj': obj, 'elt':dic})
-				dic={'obj': obj, 'b':b, 'h':h}
-				dic.update({'cdata':GetPropertyCategoryData()})
-				return render(request, 'index.html',dic)
-			else:
-				dic={'obj': obj}
-				dic.update({'cdata':GetPropertyCategoryData()})
-				return render(request, 'index.html',dic)
+	
 	except Exception:
 		dic={'obj': obj}
 		dic.update({'cdata':GetPropertyCategoryData()})
@@ -833,14 +811,20 @@ def post_blog(request):
 
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
-		return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
+	return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
 
 def openuseraccount(request):
-	uid=request.session['user_id']
-	dic=GetUserData2(uid)	
-	return render(request,"myaccount.html",dic)
+	try:
+
+		uid=request.session['user_id']
+		dic=GetUserData2(uid)	
+		return render(request,"myaccount.html",dic)
+	except Exception:
+		uid=request.session['agent_id']
+		dic=getagentinfo(uid)
+		return render(request,'myaccount.html', dic)
 
 @csrf_exempt
 def changeuserpassword(request):
