@@ -45,12 +45,10 @@ def index(request):
 			if user_account.objects.filter(user_id=n).get():
 				b=1
 				h=0
-<<<<<<< HEAD
 				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				b=1
 				return render(request, 'index.html',{'obj': obj, 'elt':dic})
-=======
 				dic={'obj': obj, 'b':b, 'h':h}
 				dic.update({'cdata':GetPropertyCategoryData()})
 				return render(request, 'index.html',dic)
@@ -59,19 +57,16 @@ def index(request):
 				dic={'obj': obj}
 				dic.update({'cdata':GetPropertyCategoryData()})
 				return render(request, 'index.html',dic)
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 		except:
 			a=request.session['agent_id']
 			if agent_account.objects.filter(agent_id=a).get():
 				b=1
 				h=0
-<<<<<<< HEAD
 				return render(request, 'index.html',{'obj': obj, 'b':b, 'h':h, 'elt':dic})
 			else:
 				return render(request, 'index.html',{'obj': obj,'elt':dic})
 	except Exception:
 		return render(request, 'index.html',{'obj': obj, 'elt':dic})
-=======
 				dic={'obj': obj, 'b':b, 'h':h}
 				dic.update({'cdata':GetPropertyCategoryData()})
 				return render(request, 'index.html',dic)
@@ -83,7 +78,7 @@ def index(request):
 		dic={'obj': obj}
 		dic.update({'cdata':GetPropertyCategoryData()})
 		return render(request, 'index.html',{'obj': obj,})
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
+
 
 		
 	
@@ -613,30 +608,18 @@ def user_login(request):
 		p=request.POST.get('password')
 		ua = user_account.objects.filter(email=e)
 		if user_account.objects.filter(email=e, password=p).exists:
-<<<<<<< HEAD
-
-=======
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 			for i in ua:
 				c=i.user_id
 				request.session['user_id']=c
 				b=1
-<<<<<<< HEAD
-
-=======
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 				break
 		if request.session.has_key('user_id') and b==1: 
 			h=1
 			dic=GetUserData(e)
 			return render(request,"myaccount.html",dic)
 		else:
-<<<<<<< HEAD
-
 			message='Please Enter Valid Details'
-=======
-			message='Please Enter valid details'
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
+
 			return render(request,'userlogin.html',{'message': message})
 @csrf_exempt
 def agent_login(request):
@@ -733,11 +716,8 @@ def send_mail_by_contact(request):
 		e= request.POST.get('email')
 		s= request.POST.get('subject')
 		m= request.POST.get('message')
-<<<<<<< HEAD
 		subject='Mail From Shri Raj Property'
-=======
-		subject='Mail from RealEstate'
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
+
 		msg= ''' Hello sir,
 
 	Someone contact you, 
@@ -849,14 +829,11 @@ def post_blog(request):
 				Desc=m
 				)
 			sv.save()
-<<<<<<< HEAD
 			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/blog_page/') </script>")
 
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
-
-=======
-			return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
+		return HttpResponse("<script> alert('Your Blog Is Posted !!'); window.location.replace('/adminlogin/') </script>")
 def openmyblogs(request):
 	return render(request,'myblogs.html',{})
 
@@ -918,4 +895,4 @@ Shri Raj Property'''
 			return render(request,"myaccount.html",dic)
 def openuserorder(request):
 	return render(request,'myorders.html',{})
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
+

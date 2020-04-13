@@ -48,19 +48,13 @@ urlpatterns = [
     path('agentblog/',agentblog),
     path('blog_page/',blog_page),
     path('post_blog/',post_blog),
-<<<<<<< HEAD
-
-
     path('openmyblogs/',openmyblogs),
     path('openchangeaccountdetails/',openchangeaccountdetails),
-
-=======
     path('openmyblogs/',openmyblogs),
     path('openchangeaccountdetails/',openchangeaccountdetails),
     path('savechangeaccountdetails/',savechangeaccountdetails),
     path('changeuserpassword/',changeuserpassword),
     path('openuserorder/',openuserorder),
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

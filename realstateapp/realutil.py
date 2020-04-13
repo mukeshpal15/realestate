@@ -127,10 +127,7 @@ def GetPropertyData(pid):
 			dic.update({'coverimage':y.Property_Image.url})
 			break
 	return dic
-<<<<<<< HEAD
 
-=======
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
 
 def getagentinfo(agent_id):
 	dic={}
@@ -200,9 +197,7 @@ def GetUserData(email):
 		}
 		break
 	return dic
-<<<<<<< HEAD
 
-=======
 def GetUserData2(uid):
 	obj=user_account.objects.filter(user_id=uid)
 	dic={}
@@ -218,4 +213,4 @@ def GetUserData2(uid):
 		}
 		break
 	return dic
->>>>>>> 7f5ae1baaa305cc07a124079c96a25eef05a19fa
+
